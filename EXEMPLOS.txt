@@ -1,6 +1,9 @@
 Exemplos:
 
-One-to-many
+/*******************************************************/
+/*******************One-to-many*************************/
+/*******************************************************/
+
 Em SQL: 
 
 CREATE TABLE customers (
@@ -19,5 +22,20 @@ Em rails:
 
 rails generate model customers customer_name:string;
 rails generate model orders customer:references amount:double;
+
+DESAFIOS: 
+1- Ignorar as linhas que criam ID para a tabela, ja que o rails ja cria sozinho e criar na mão vai atrapalhar na hora de criar as referências
+1.1- Podemos tentar olhar os atributos que possuam AUTO_INCREMENT e PRIMARY KEY e ignorar
+1.2- Se o campo for PRIMARY KEY mas não foi AUTO_INCREMENT quer dizer que é um outro valor qualquer que antes era uma primary key mas não um id (CPF numa tabela de usuario pro exemplos), 
+isso deve ser mantido pro rails mas deixando de ser PRIMARY KEY 
+2- Se o atributo começar com  FOREIGN KEY devemos fazer o references do rails
+2.2- Verificar quando exatemente devemos usar plural e singular e se isso afeta o raisl generate
+
+Links de referencia:
+http://stackoverflow.com/questions/7861971/generate-model-using-userreferences-vs-user-idinteger
+http://guides.rubyonrails.org/getting_started.html
+
+
+
 
 
