@@ -1,0 +1,2 @@
+rails generate scaffold PersonsPersonID:int Nome:Varchar 
+TABELAteste
