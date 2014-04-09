@@ -20,8 +20,9 @@ CREATE TABLE orders (
 
 Em rails:
 
-rails generate model customers customer_name:string;
-rails generate model orders customer:references amount:double;
+rails generate model customers customer_name:string --force
+rails generate model orders customer:references amount:decimal{42.6} --force
+
 
 DESAFIOS: 
 1- Ignorar as linhas que criam ID para a tabela, ja que o rails ja cria sozinho e criar na mão vai atrapalhar na hora de criar as referências
@@ -29,7 +30,12 @@ DESAFIOS:
 1.2- Se o campo for PRIMARY KEY mas não foi AUTO_INCREMENT quer dizer que é um outro valor qualquer que antes era uma primary key mas não um id (CPF numa tabela de usuario pro exemplos), 
 isso deve ser mantido pro rails mas deixando de ser PRIMARY KEY 
 2- Se o atributo começar com  FOREIGN KEY devemos fazer o references do rails
-2.2- Verificar quando exatemente devemos usar plural e singular e se isso afeta o raisl generate
+2.2- Verificar quando exatemente devemos usar plural e singular e se isso afeta o raisl generate ************VEFICICADO QUE NÃO TEM PROBLEMA ALGUM************
+
+ATENÇÃO:
+A) Usar --force no final de cada linha para evitar conflitos
+B) Não existe tipo double, no lugar usar decimal{42.6} ( significa  precision: 42, scale: 6 , essa é a precisão e escala padrões para doublem em mysql)
+C) Os tipos que existem são: :string, :text, :integer, :float, :decimal, :datetime, :timestamp, :time, :date, :binary, :boolean, :references
 
 Links de referencia:
 http://stackoverflow.com/questions/7861971/generate-model-using-userreferences-vs-user-idinteger
