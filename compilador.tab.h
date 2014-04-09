@@ -58,9 +58,17 @@ extern int yydebug;
      VAR = 267,
      IDENT = 268,
      ATRIBUICAO = 269,
-     TABLE = 270,
-     CREATE = 271,
-     ALTER = 272
+     STRING = 270,
+     TABLE = 271,
+     COLUMN = 272,
+     ROW = 273,
+     CREATE = 274,
+     ALTER = 275,
+     COMMENT = 276,
+     ON = 277,
+     IS = 278,
+     ASPAS_SIMPLES = 279,
+     ASPAS_DUPLAS = 280
    };
 #endif
 

@@ -1,6 +1,2 @@
-     CRIANDO
-     TABELA
-     CRIANDO
-     TABELA
-     ALTERANDO
-     TABELA
+rails generate scaffold PersonsPersonID:int Nome:Varchar 
+TABELAteste

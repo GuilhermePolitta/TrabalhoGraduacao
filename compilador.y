@@ -26,15 +26,26 @@ char string[TAM_STRING];
 
 %%
 
+//rails generate scaffold HighScore game:string score:integer
 t_create	:
 			CREATE {
-				 geraCodigo (NULL, "CRIANDO"); 
+				 geraCodigo (NULL, "rails generate scaffold "); 
 				}
-			TABLE {
-				 geraCodigo (NULL, "TABELA"); 
-				}
-			IDENT PONTO_E_VIRGULA prox_regra
+			TABLE 
+			IDENT {geraCodigo (NULL, token); } 
+			ABRE_PARENTESES lista_ident FECHA_PARENTESES
+			PONTO_E_VIRGULA{geraCodigo (NULL, "\n"); } prox_regra
 ;
+
+add_campo_tabela: IDENT {
+						geraCodigo (NULL, token);
+						geraCodigo (NULL, ":");
+					} IDENT  {
+						geraCodigo (NULL, token);
+						geraCodigo (NULL, " ");
+					}
+//da pra criar um token pros tipos de possiveis de campos (int, varchar, etc) fica mais facil
+lista_ident: 	lista_ident  VIRGULA  add_campo_tabela| add_campo_tabela
 
 /*atributos	:
 			IDENT tipo_atributo {
@@ -49,13 +60,13 @@ t_alter		:
 			TABLE {
 				 geraCodigo (NULL, "TABELA"); 
 				}
-			IDENT PONTO_E_VIRGULA prox_regra
+			IDENT {geraCodigo (NULL, token); } PONTO_E_VIRGULA{geraCodigo (NULL, "\n"); }  prox_regra
 ;
 
 t_comment	:
-			COMMENT ON tipos IDENT IS {
+			COMMENT ON tipos IDENT {geraCodigo (NULL, token); }  IS {
 
-			} STRING PONTO_E_VIRGULA prox_regra
+			} STRING PONTO_E_VIRGULA{geraCodigo (NULL, "\n"); } prox_regra
 ;
 
 tipos		:
@@ -70,7 +81,7 @@ prox_regra	: t_alter  |
 ;
 
 %%
-
+	
 main (int argc, char** argv) {
    FILE* fp;
    extern FILE* yyin;
