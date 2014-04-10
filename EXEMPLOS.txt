@@ -21,7 +21,7 @@ CREATE TABLE orders (
 Em rails:
 
 rails generate model customers customer_name:string --force
-rails generate model orders customer:references amount:decimal{42.6} --force
+rails generate model orders customers:references amount:decimal{42.6} --force
 
 
 DESAFIOS: 
@@ -30,7 +30,7 @@ DESAFIOS:
 1.2- Se o campo for PRIMARY KEY mas não foi AUTO_INCREMENT quer dizer que é um outro valor qualquer que antes era uma primary key mas não um id (CPF numa tabela de usuario pro exemplos), 
 isso deve ser mantido pro rails mas deixando de ser PRIMARY KEY 
 2- Se o atributo começar com  FOREIGN KEY devemos fazer o references do rails
-2.2- Verificar quando exatemente devemos usar plural e singular e se isso afeta o raisl generate ************VEFICICADO QUE NÃO TEM PROBLEMA ALGUM************
+2.2- Verificar quando exatemente devemos usar plural e singular e se isso afeta o raisl generate ************DEVE SER USADO SEMPRE O MESMO NOME***********
 
 ATENÇÃO:
 A) Usar --force no final de cada linha para evitar conflitos
@@ -42,6 +42,32 @@ http://stackoverflow.com/questions/7861971/generate-model-using-userreferences-v
 http://guides.rubyonrails.org/getting_started.html
 
 
+/*******************************************************/
+/*******************Many-to-many*************************/
+/*******************************************************/
 
+Em SQL:
 
+CREATE TABLE computers (
+    computer_id INT AUTO_INCREMENT PRIMARY KEY,
+    model VARCHAR(100)
+);
+
+CREATE TABLE printers (
+    printer_id INT AUTO_INCREMENT PRIMARY KEY,
+    ip VARCHAR(100)
+);
+
+create table computers_printers_junction (
+  computer_id INT,
+  printer_id INT,
+  FOREIGN KEY (computer_id) REFERENCES customers(customer_id),
+  FOREIGN KEY (printer_id) REFERENCES customers(customer_id)
+);
+
+Em rails:
+
+rails g model computers model:string --force
+rails g model printers ip:string --force
+rails g model computers_printers_junction computers:references printers:references --force
 
