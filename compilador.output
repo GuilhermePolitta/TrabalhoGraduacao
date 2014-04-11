@@ -19,16 +19,16 @@ Gramática
 
     2 $@2: /* vazio */
 
-    3 $@3: /* vazio */
+    3 t_create: CREATE TABLE IDENT $@1 ABRE_PARENTESES lista_ident FECHA_PARENTESES PONTO_E_VIRGULA $@2 prox_regra
 
-    4 t_create: CREATE $@1 TABLE IDENT $@2 ABRE_PARENTESES lista_ident FECHA_PARENTESES PONTO_E_VIRGULA $@3 prox_regra
+    4 $@3: /* vazio */
 
-    5 $@4: /* vazio */
+    5 add_campo_tabela: IDENT $@3 IDENT
 
-    6 add_campo_tabela: IDENT $@4 IDENT
+    6 lista_ident: lista_ident VIRGULA add_campo_tabela
+    7            | add_campo_tabela
 
-    7 lista_ident: lista_ident VIRGULA add_campo_tabela
-    8            | add_campo_tabela
+    8 $@4: /* vazio */
 
     9 $@5: /* vazio */
 
@@ -36,26 +36,24 @@ Gramática
 
    11 $@7: /* vazio */
 
-   12 $@8: /* vazio */
+   12 t_alter: ALTER $@4 TABLE $@5 IDENT $@6 PONTO_E_VIRGULA $@7 prox_regra
 
-   13 t_alter: ALTER $@5 TABLE $@6 IDENT $@7 PONTO_E_VIRGULA $@8 prox_regra
+   13 $@8: /* vazio */
 
    14 $@9: /* vazio */
 
    15 $@10: /* vazio */
 
-   16 $@11: /* vazio */
+   16 t_comment: COMMENT ON tipos IDENT $@8 IS $@9 STRING PONTO_E_VIRGULA $@10 prox_regra
 
-   17 t_comment: COMMENT ON tipos IDENT $@9 IS $@10 STRING PONTO_E_VIRGULA $@11 prox_regra
+   17 tipos: TABLE
+   18      | COLUMN
+   19      | ROW
 
-   18 tipos: TABLE
-   19      | COLUMN
-   20      | ROW
-
-   21 prox_regra: t_alter
-   22           | t_create
-   23           | t_comment
-   24           | /* vazio */
+   20 prox_regra: t_alter
+   21           | t_create
+   22           | t_comment
+   23           | /* vazio */
 
 
 Terminais, com as regras onde eles aparecem
@@ -63,26 +61,26 @@ Terminais, com as regras onde eles aparecem
 $end (0) 0
 error (256)
 PROGRAM (258)
-ABRE_PARENTESES (259) 4
-FECHA_PARENTESES (260) 4
-VIRGULA (261) 7
-PONTO_E_VIRGULA (262) 4 13 17
+ABRE_PARENTESES (259) 3
+FECHA_PARENTESES (260) 3
+VIRGULA (261) 6
+PONTO_E_VIRGULA (262) 3 12 16
 DOIS_PONTOS (263)
 PONTO (264)
 T_BEGIN (265)
 T_END (266)
 VAR (267)
-IDENT (268) 4 6 13 17
+IDENT (268) 3 5 12 16
 ATRIBUICAO (269)
-STRING (270) 17
-TABLE (271) 4 13 18
-COLUMN (272) 19
-ROW (273) 20
-CREATE (274) 4
-ALTER (275) 13
-COMMENT (276) 17
-ON (277) 17
-IS (278) 17
+STRING (270) 16
+TABLE (271) 3 12 17
+COLUMN (272) 18
+ROW (273) 19
+CREATE (274) 3
+ALTER (275) 12
+COMMENT (276) 16
+ON (277) 16
+IS (278) 16
 ASPAS_SIMPLES (279)
 ASPAS_DUPLAS (280)
 
@@ -92,41 +90,39 @@ Não-terminais com as regras onde eles aparecem
 $accept (26)
     à esquerda: 0
 t_create (27)
-    à esquerda: 4, à direita: 0 22
+    à esquerda: 3, à direita: 0 21
 $@1 (28)
-    à esquerda: 1, à direita: 4
+    à esquerda: 1, à direita: 3
 $@2 (29)
-    à esquerda: 2, à direita: 4
-$@3 (30)
-    à esquerda: 3, à direita: 4
-add_campo_tabela (31)
-    à esquerda: 6, à direita: 7 8
-$@4 (32)
-    à esquerda: 5, à direita: 6
-lista_ident (33)
-    à esquerda: 7 8, à direita: 4 7
-t_alter (34)
-    à esquerda: 13, à direita: 21
+    à esquerda: 2, à direita: 3
+add_campo_tabela (30)
+    à esquerda: 5, à direita: 6 7
+$@3 (31)
+    à esquerda: 4, à direita: 5
+lista_ident (32)
+    à esquerda: 6 7, à direita: 3 6
+t_alter (33)
+    à esquerda: 12, à direita: 20
+$@4 (34)
+    à esquerda: 8, à direita: 12
 $@5 (35)
-    à esquerda: 9, à direita: 13
+    à esquerda: 9, à direita: 12
 $@6 (36)
-    à esquerda: 10, à direita: 13
+    à esquerda: 10, à direita: 12
 $@7 (37)
-    à esquerda: 11, à direita: 13
-$@8 (38)
-    à esquerda: 12, à direita: 13
-t_comment (39)
-    à esquerda: 17, à direita: 23
+    à esquerda: 11, à direita: 12
+t_comment (38)
+    à esquerda: 16, à direita: 22
+$@8 (39)
+    à esquerda: 13, à direita: 16
 $@9 (40)
-    à esquerda: 14, à direita: 17
+    à esquerda: 14, à direita: 16
 $@10 (41)
-    à esquerda: 15, à direita: 17
-$@11 (42)
-    à esquerda: 16, à direita: 17
-tipos (43)
-    à esquerda: 18 19 20, à direita: 17
-prox_regra (44)
-    à esquerda: 21 22 23 24, à direita: 4 13 17
+    à esquerda: 15, à direita: 16
+tipos (42)
+    à esquerda: 17 18 19, à direita: 16
+prox_regra (43)
+    à esquerda: 20 21 22 23, à direita: 3 12 16
 
 
 State 0
@@ -140,11 +136,9 @@ State 0
 
 State 1
 
-    4 t_create: CREATE . $@1 TABLE IDENT $@2 ABRE_PARENTESES lista_ident FECHA_PARENTESES PONTO_E_VIRGULA $@3 prox_regra
+    3 t_create: CREATE . TABLE IDENT $@1 ABRE_PARENTESES lista_ident FECHA_PARENTESES PONTO_E_VIRGULA $@2 prox_regra
 
-    $padrão  reduzir usando a regra 1 ($@1)
-
-    $@1  ir ao estado 3
+    TABLE  deslocar, e ir ao estado 3
 
 
 State 2
@@ -156,9 +150,9 @@ State 2
 
 State 3
 
-    4 t_create: CREATE $@1 . TABLE IDENT $@2 ABRE_PARENTESES lista_ident FECHA_PARENTESES PONTO_E_VIRGULA $@3 prox_regra
+    3 t_create: CREATE TABLE . IDENT $@1 ABRE_PARENTESES lista_ident FECHA_PARENTESES PONTO_E_VIRGULA $@2 prox_regra
 
-    TABLE  deslocar, e ir ao estado 5
+    IDENT  deslocar, e ir ao estado 5
 
 
 State 4
@@ -170,344 +164,337 @@ State 4
 
 State 5
 
-    4 t_create: CREATE $@1 TABLE . IDENT $@2 ABRE_PARENTESES lista_ident FECHA_PARENTESES PONTO_E_VIRGULA $@3 prox_regra
+    3 t_create: CREATE TABLE IDENT . $@1 ABRE_PARENTESES lista_ident FECHA_PARENTESES PONTO_E_VIRGULA $@2 prox_regra
 
-    IDENT  deslocar, e ir ao estado 6
+    $padrão  reduzir usando a regra 1 ($@1)
+
+    $@1  ir ao estado 6
 
 
 State 6
 
-    4 t_create: CREATE $@1 TABLE IDENT . $@2 ABRE_PARENTESES lista_ident FECHA_PARENTESES PONTO_E_VIRGULA $@3 prox_regra
+    3 t_create: CREATE TABLE IDENT $@1 . ABRE_PARENTESES lista_ident FECHA_PARENTESES PONTO_E_VIRGULA $@2 prox_regra
 
-    $padrão  reduzir usando a regra 2 ($@2)
-
-    $@2  ir ao estado 7
+    ABRE_PARENTESES  deslocar, e ir ao estado 7
 
 
 State 7
 
-    4 t_create: CREATE $@1 TABLE IDENT $@2 . ABRE_PARENTESES lista_ident FECHA_PARENTESES PONTO_E_VIRGULA $@3 prox_regra
+    3 t_create: CREATE TABLE IDENT $@1 ABRE_PARENTESES . lista_ident FECHA_PARENTESES PONTO_E_VIRGULA $@2 prox_regra
 
-    ABRE_PARENTESES  deslocar, e ir ao estado 8
+    IDENT  deslocar, e ir ao estado 8
+
+    add_campo_tabela  ir ao estado 9
+    lista_ident       ir ao estado 10
 
 
 State 8
 
-    4 t_create: CREATE $@1 TABLE IDENT $@2 ABRE_PARENTESES . lista_ident FECHA_PARENTESES PONTO_E_VIRGULA $@3 prox_regra
+    5 add_campo_tabela: IDENT . $@3 IDENT
 
-    IDENT  deslocar, e ir ao estado 9
+    $padrão  reduzir usando a regra 4 ($@3)
 
-    add_campo_tabela  ir ao estado 10
-    lista_ident       ir ao estado 11
+    $@3  ir ao estado 11
 
 
 State 9
 
-    6 add_campo_tabela: IDENT . $@4 IDENT
-
-    $padrão  reduzir usando a regra 5 ($@4)
-
-    $@4  ir ao estado 12
-
-
-State 10
-
-    8 lista_ident: add_campo_tabela .
-
-    $padrão  reduzir usando a regra 8 (lista_ident)
-
-
-State 11
-
-    4 t_create: CREATE $@1 TABLE IDENT $@2 ABRE_PARENTESES lista_ident . FECHA_PARENTESES PONTO_E_VIRGULA $@3 prox_regra
-    7 lista_ident: lista_ident . VIRGULA add_campo_tabela
-
-    FECHA_PARENTESES  deslocar, e ir ao estado 13
-    VIRGULA           deslocar, e ir ao estado 14
-
-
-State 12
-
-    6 add_campo_tabela: IDENT $@4 . IDENT
-
-    IDENT  deslocar, e ir ao estado 15
-
-
-State 13
-
-    4 t_create: CREATE $@1 TABLE IDENT $@2 ABRE_PARENTESES lista_ident FECHA_PARENTESES . PONTO_E_VIRGULA $@3 prox_regra
-
-    PONTO_E_VIRGULA  deslocar, e ir ao estado 16
-
-
-State 14
-
-    7 lista_ident: lista_ident VIRGULA . add_campo_tabela
-
-    IDENT  deslocar, e ir ao estado 9
-
-    add_campo_tabela  ir ao estado 17
-
-
-State 15
-
-    6 add_campo_tabela: IDENT $@4 IDENT .
-
-    $padrão  reduzir usando a regra 6 (add_campo_tabela)
-
-
-State 16
-
-    4 t_create: CREATE $@1 TABLE IDENT $@2 ABRE_PARENTESES lista_ident FECHA_PARENTESES PONTO_E_VIRGULA . $@3 prox_regra
-
-    $padrão  reduzir usando a regra 3 ($@3)
-
-    $@3  ir ao estado 18
-
-
-State 17
-
-    7 lista_ident: lista_ident VIRGULA add_campo_tabela .
+    7 lista_ident: add_campo_tabela .
 
     $padrão  reduzir usando a regra 7 (lista_ident)
 
 
-State 18
+State 10
 
-    4 t_create: CREATE $@1 TABLE IDENT $@2 ABRE_PARENTESES lista_ident FECHA_PARENTESES PONTO_E_VIRGULA $@3 . prox_regra
+    3 t_create: CREATE TABLE IDENT $@1 ABRE_PARENTESES lista_ident . FECHA_PARENTESES PONTO_E_VIRGULA $@2 prox_regra
+    6 lista_ident: lista_ident . VIRGULA add_campo_tabela
+
+    FECHA_PARENTESES  deslocar, e ir ao estado 12
+    VIRGULA           deslocar, e ir ao estado 13
+
+
+State 11
+
+    5 add_campo_tabela: IDENT $@3 . IDENT
+
+    IDENT  deslocar, e ir ao estado 14
+
+
+State 12
+
+    3 t_create: CREATE TABLE IDENT $@1 ABRE_PARENTESES lista_ident FECHA_PARENTESES . PONTO_E_VIRGULA $@2 prox_regra
+
+    PONTO_E_VIRGULA  deslocar, e ir ao estado 15
+
+
+State 13
+
+    6 lista_ident: lista_ident VIRGULA . add_campo_tabela
+
+    IDENT  deslocar, e ir ao estado 8
+
+    add_campo_tabela  ir ao estado 16
+
+
+State 14
+
+    5 add_campo_tabela: IDENT $@3 IDENT .
+
+    $padrão  reduzir usando a regra 5 (add_campo_tabela)
+
+
+State 15
+
+    3 t_create: CREATE TABLE IDENT $@1 ABRE_PARENTESES lista_ident FECHA_PARENTESES PONTO_E_VIRGULA . $@2 prox_regra
+
+    $padrão  reduzir usando a regra 2 ($@2)
+
+    $@2  ir ao estado 17
+
+
+State 16
+
+    6 lista_ident: lista_ident VIRGULA add_campo_tabela .
+
+    $padrão  reduzir usando a regra 6 (lista_ident)
+
+
+State 17
+
+    3 t_create: CREATE TABLE IDENT $@1 ABRE_PARENTESES lista_ident FECHA_PARENTESES PONTO_E_VIRGULA $@2 . prox_regra
 
     CREATE   deslocar, e ir ao estado 1
-    ALTER    deslocar, e ir ao estado 19
-    COMMENT  deslocar, e ir ao estado 20
+    ALTER    deslocar, e ir ao estado 18
+    COMMENT  deslocar, e ir ao estado 19
 
-    $padrão  reduzir usando a regra 24 (prox_regra)
+    $padrão  reduzir usando a regra 23 (prox_regra)
 
-    t_create    ir ao estado 21
-    t_alter     ir ao estado 22
-    t_comment   ir ao estado 23
-    prox_regra  ir ao estado 24
+    t_create    ir ao estado 20
+    t_alter     ir ao estado 21
+    t_comment   ir ao estado 22
+    prox_regra  ir ao estado 23
+
+
+State 18
+
+   12 t_alter: ALTER . $@4 TABLE $@5 IDENT $@6 PONTO_E_VIRGULA $@7 prox_regra
+
+    $padrão  reduzir usando a regra 8 ($@4)
+
+    $@4  ir ao estado 24
 
 
 State 19
 
-   13 t_alter: ALTER . $@5 TABLE $@6 IDENT $@7 PONTO_E_VIRGULA $@8 prox_regra
+   16 t_comment: COMMENT . ON tipos IDENT $@8 IS $@9 STRING PONTO_E_VIRGULA $@10 prox_regra
 
-    $padrão  reduzir usando a regra 9 ($@5)
-
-    $@5  ir ao estado 25
+    ON  deslocar, e ir ao estado 25
 
 
 State 20
 
-   17 t_comment: COMMENT . ON tipos IDENT $@9 IS $@10 STRING PONTO_E_VIRGULA $@11 prox_regra
-
-    ON  deslocar, e ir ao estado 26
-
-
-State 21
-
-   22 prox_regra: t_create .
-
-    $padrão  reduzir usando a regra 22 (prox_regra)
-
-
-State 22
-
-   21 prox_regra: t_alter .
+   21 prox_regra: t_create .
 
     $padrão  reduzir usando a regra 21 (prox_regra)
 
 
+State 21
+
+   20 prox_regra: t_alter .
+
+    $padrão  reduzir usando a regra 20 (prox_regra)
+
+
+State 22
+
+   22 prox_regra: t_comment .
+
+    $padrão  reduzir usando a regra 22 (prox_regra)
+
+
 State 23
 
-   23 prox_regra: t_comment .
+    3 t_create: CREATE TABLE IDENT $@1 ABRE_PARENTESES lista_ident FECHA_PARENTESES PONTO_E_VIRGULA $@2 prox_regra .
 
-    $padrão  reduzir usando a regra 23 (prox_regra)
+    $padrão  reduzir usando a regra 3 (t_create)
 
 
 State 24
 
-    4 t_create: CREATE $@1 TABLE IDENT $@2 ABRE_PARENTESES lista_ident FECHA_PARENTESES PONTO_E_VIRGULA $@3 prox_regra .
+   12 t_alter: ALTER $@4 . TABLE $@5 IDENT $@6 PONTO_E_VIRGULA $@7 prox_regra
 
-    $padrão  reduzir usando a regra 4 (t_create)
+    TABLE  deslocar, e ir ao estado 26
 
 
 State 25
 
-   13 t_alter: ALTER $@5 . TABLE $@6 IDENT $@7 PONTO_E_VIRGULA $@8 prox_regra
+   16 t_comment: COMMENT ON . tipos IDENT $@8 IS $@9 STRING PONTO_E_VIRGULA $@10 prox_regra
 
-    TABLE  deslocar, e ir ao estado 27
+    TABLE   deslocar, e ir ao estado 27
+    COLUMN  deslocar, e ir ao estado 28
+    ROW     deslocar, e ir ao estado 29
+
+    tipos  ir ao estado 30
 
 
 State 26
 
-   17 t_comment: COMMENT ON . tipos IDENT $@9 IS $@10 STRING PONTO_E_VIRGULA $@11 prox_regra
+   12 t_alter: ALTER $@4 TABLE . $@5 IDENT $@6 PONTO_E_VIRGULA $@7 prox_regra
 
-    TABLE   deslocar, e ir ao estado 28
-    COLUMN  deslocar, e ir ao estado 29
-    ROW     deslocar, e ir ao estado 30
+    $padrão  reduzir usando a regra 9 ($@5)
 
-    tipos  ir ao estado 31
+    $@5  ir ao estado 31
 
 
 State 27
 
-   13 t_alter: ALTER $@5 TABLE . $@6 IDENT $@7 PONTO_E_VIRGULA $@8 prox_regra
+   17 tipos: TABLE .
 
-    $padrão  reduzir usando a regra 10 ($@6)
-
-    $@6  ir ao estado 32
+    $padrão  reduzir usando a regra 17 (tipos)
 
 
 State 28
 
-   18 tipos: TABLE .
+   18 tipos: COLUMN .
 
     $padrão  reduzir usando a regra 18 (tipos)
 
 
 State 29
 
-   19 tipos: COLUMN .
+   19 tipos: ROW .
 
     $padrão  reduzir usando a regra 19 (tipos)
 
 
 State 30
 
-   20 tipos: ROW .
+   16 t_comment: COMMENT ON tipos . IDENT $@8 IS $@9 STRING PONTO_E_VIRGULA $@10 prox_regra
 
-    $padrão  reduzir usando a regra 20 (tipos)
+    IDENT  deslocar, e ir ao estado 32
 
 
 State 31
 
-   17 t_comment: COMMENT ON tipos . IDENT $@9 IS $@10 STRING PONTO_E_VIRGULA $@11 prox_regra
+   12 t_alter: ALTER $@4 TABLE $@5 . IDENT $@6 PONTO_E_VIRGULA $@7 prox_regra
 
     IDENT  deslocar, e ir ao estado 33
 
 
 State 32
 
-   13 t_alter: ALTER $@5 TABLE $@6 . IDENT $@7 PONTO_E_VIRGULA $@8 prox_regra
+   16 t_comment: COMMENT ON tipos IDENT . $@8 IS $@9 STRING PONTO_E_VIRGULA $@10 prox_regra
 
-    IDENT  deslocar, e ir ao estado 34
+    $padrão  reduzir usando a regra 13 ($@8)
+
+    $@8  ir ao estado 34
 
 
 State 33
 
-   17 t_comment: COMMENT ON tipos IDENT . $@9 IS $@10 STRING PONTO_E_VIRGULA $@11 prox_regra
+   12 t_alter: ALTER $@4 TABLE $@5 IDENT . $@6 PONTO_E_VIRGULA $@7 prox_regra
 
-    $padrão  reduzir usando a regra 14 ($@9)
+    $padrão  reduzir usando a regra 10 ($@6)
 
-    $@9  ir ao estado 35
+    $@6  ir ao estado 35
 
 
 State 34
 
-   13 t_alter: ALTER $@5 TABLE $@6 IDENT . $@7 PONTO_E_VIRGULA $@8 prox_regra
+   16 t_comment: COMMENT ON tipos IDENT $@8 . IS $@9 STRING PONTO_E_VIRGULA $@10 prox_regra
 
-    $padrão  reduzir usando a regra 11 ($@7)
-
-    $@7  ir ao estado 36
+    IS  deslocar, e ir ao estado 36
 
 
 State 35
 
-   17 t_comment: COMMENT ON tipos IDENT $@9 . IS $@10 STRING PONTO_E_VIRGULA $@11 prox_regra
+   12 t_alter: ALTER $@4 TABLE $@5 IDENT $@6 . PONTO_E_VIRGULA $@7 prox_regra
 
-    IS  deslocar, e ir ao estado 37
+    PONTO_E_VIRGULA  deslocar, e ir ao estado 37
 
 
 State 36
 
-   13 t_alter: ALTER $@5 TABLE $@6 IDENT $@7 . PONTO_E_VIRGULA $@8 prox_regra
+   16 t_comment: COMMENT ON tipos IDENT $@8 IS . $@9 STRING PONTO_E_VIRGULA $@10 prox_regra
 
-    PONTO_E_VIRGULA  deslocar, e ir ao estado 38
+    $padrão  reduzir usando a regra 14 ($@9)
+
+    $@9  ir ao estado 38
 
 
 State 37
 
-   17 t_comment: COMMENT ON tipos IDENT $@9 IS . $@10 STRING PONTO_E_VIRGULA $@11 prox_regra
+   12 t_alter: ALTER $@4 TABLE $@5 IDENT $@6 PONTO_E_VIRGULA . $@7 prox_regra
 
-    $padrão  reduzir usando a regra 15 ($@10)
+    $padrão  reduzir usando a regra 11 ($@7)
 
-    $@10  ir ao estado 39
+    $@7  ir ao estado 39
 
 
 State 38
 
-   13 t_alter: ALTER $@5 TABLE $@6 IDENT $@7 PONTO_E_VIRGULA . $@8 prox_regra
+   16 t_comment: COMMENT ON tipos IDENT $@8 IS $@9 . STRING PONTO_E_VIRGULA $@10 prox_regra
 
-    $padrão  reduzir usando a regra 12 ($@8)
-
-    $@8  ir ao estado 40
+    STRING  deslocar, e ir ao estado 40
 
 
 State 39
 
-   17 t_comment: COMMENT ON tipos IDENT $@9 IS $@10 . STRING PONTO_E_VIRGULA $@11 prox_regra
+   12 t_alter: ALTER $@4 TABLE $@5 IDENT $@6 PONTO_E_VIRGULA $@7 . prox_regra
 
-    STRING  deslocar, e ir ao estado 41
+    CREATE   deslocar, e ir ao estado 1
+    ALTER    deslocar, e ir ao estado 18
+    COMMENT  deslocar, e ir ao estado 19
+
+    $padrão  reduzir usando a regra 23 (prox_regra)
+
+    t_create    ir ao estado 20
+    t_alter     ir ao estado 21
+    t_comment   ir ao estado 22
+    prox_regra  ir ao estado 41
 
 
 State 40
 
-   13 t_alter: ALTER $@5 TABLE $@6 IDENT $@7 PONTO_E_VIRGULA $@8 . prox_regra
+   16 t_comment: COMMENT ON tipos IDENT $@8 IS $@9 STRING . PONTO_E_VIRGULA $@10 prox_regra
 
-    CREATE   deslocar, e ir ao estado 1
-    ALTER    deslocar, e ir ao estado 19
-    COMMENT  deslocar, e ir ao estado 20
-
-    $padrão  reduzir usando a regra 24 (prox_regra)
-
-    t_create    ir ao estado 21
-    t_alter     ir ao estado 22
-    t_comment   ir ao estado 23
-    prox_regra  ir ao estado 42
+    PONTO_E_VIRGULA  deslocar, e ir ao estado 42
 
 
 State 41
 
-   17 t_comment: COMMENT ON tipos IDENT $@9 IS $@10 STRING . PONTO_E_VIRGULA $@11 prox_regra
+   12 t_alter: ALTER $@4 TABLE $@5 IDENT $@6 PONTO_E_VIRGULA $@7 prox_regra .
 
-    PONTO_E_VIRGULA  deslocar, e ir ao estado 43
+    $padrão  reduzir usando a regra 12 (t_alter)
 
 
 State 42
 
-   13 t_alter: ALTER $@5 TABLE $@6 IDENT $@7 PONTO_E_VIRGULA $@8 prox_regra .
+   16 t_comment: COMMENT ON tipos IDENT $@8 IS $@9 STRING PONTO_E_VIRGULA . $@10 prox_regra
 
-    $padrão  reduzir usando a regra 13 (t_alter)
+    $padrão  reduzir usando a regra 15 ($@10)
+
+    $@10  ir ao estado 43
 
 
 State 43
 
-   17 t_comment: COMMENT ON tipos IDENT $@9 IS $@10 STRING PONTO_E_VIRGULA . $@11 prox_regra
+   16 t_comment: COMMENT ON tipos IDENT $@8 IS $@9 STRING PONTO_E_VIRGULA $@10 . prox_regra
 
-    $padrão  reduzir usando a regra 16 ($@11)
+    CREATE   deslocar, e ir ao estado 1
+    ALTER    deslocar, e ir ao estado 18
+    COMMENT  deslocar, e ir ao estado 19
 
-    $@11  ir ao estado 44
+    $padrão  reduzir usando a regra 23 (prox_regra)
+
+    t_create    ir ao estado 20
+    t_alter     ir ao estado 21
+    t_comment   ir ao estado 22
+    prox_regra  ir ao estado 44
 
 
 State 44
 
-   17 t_comment: COMMENT ON tipos IDENT $@9 IS $@10 STRING PONTO_E_VIRGULA $@11 . prox_regra
+   16 t_comment: COMMENT ON tipos IDENT $@8 IS $@9 STRING PONTO_E_VIRGULA $@10 prox_regra .
 
-    CREATE   deslocar, e ir ao estado 1
-    ALTER    deslocar, e ir ao estado 19
-    COMMENT  deslocar, e ir ao estado 20
-
-    $padrão  reduzir usando a regra 24 (prox_regra)
-
-    t_create    ir ao estado 21
-    t_alter     ir ao estado 22
-    t_comment   ir ao estado 23
-    prox_regra  ir ao estado 45
-
-
-State 45
-
-   17 t_comment: COMMENT ON tipos IDENT $@9 IS $@10 STRING PONTO_E_VIRGULA $@11 prox_regra .
-
-    $padrão  reduzir usando a regra 17 (t_comment)
+    $padrão  reduzir usando a regra 16 (t_comment)

@@ -29,23 +29,15 @@ char especificacaoAtributo[TAM_TOKEN];
 
 //rails generate scaffold HighScore game:string score:integer
 t_create	:
-			CREATE {
-				 geraCodigo (NULL, "rails generate scaffold "); 
-				}
-			TABLE 
-			IDENT {geraCodigo (NULL, token); } 
-			ABRE_PARENTESES lista_ident FECHA_PARENTESES
-			PONTO_E_VIRGULA{geraCodigo (NULL, "\n"); } prox_regra
+			CREATE TABLE IDENT { tabela =  criaTabela(token); } 
+			ABRE_PARENTESES lista_ident FECHA_PARENTESES PONTO_E_VIRGULA  { criaRailsFromTabela(tabela); } prox_regra
 ;
 
 add_campo_tabela: IDENT {
-						//strncpy(atributo, token, TAM_TOKEN);
-						geraCodigo (NULL, token);
-						geraCodigo (NULL, ":");
+						atributo = criaAtributo(token);
 					} IDENT  {
-					strncpy(tipoAtributo, token, TAM_TOKEN);
-						geraCodigo (NULL, token);
-						geraCodigo (NULL, " ");
+						setTipoAtributo(atributo, token);
+						addAtributoNaTabela(atributo, tabela);
 					} 
 ;
 

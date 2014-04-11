@@ -49,3 +49,20 @@ char token[TAM_TOKEN];
 
 atributoTabela *atributo;
 table *tabela;
+
+
+atributoTabela *criaAtributo(char nome[TAM_TOKEN]);
+	
+void setTipoAtributo(atributoTabela *atributoMod, char tipo[TAM_TOKEN]);
+
+void setPrimaryKey(atributoTabela *atributoMod, BOOL primary);
+
+void setForeignKey(atributoTabela *atributoMod, BOOL foreign);
+
+void setLimite(atributoTabela *atributoMod, int limite);
+
+table *criaTabela (char nome[TAM_TOKEN]);
+
+void addAtributoNaTabela(atributoTabela *atributoAdd, table *tableAdd);
+
+void criaRailsFromTabela(table *tableSql);

@@ -31,7 +31,10 @@ int imprimeErro ( char* erro ) {
 atributoTabela *criaAtributo(char nome[TAM_TOKEN]) {
 	atributoTabela *newAtributo = malloc(sizeof(atributoTabela));
 	strncpy(newAtributo->nome , nome, TAM_TOKEN);
-	newAtributo->limite = 0;
+	setLimite(newAtributo,0);
+	setPrimaryKey(newAtributo,0);
+	setForeignKey(newAtributo,0);
+	newAtributo->foreign = 0;
 	return newAtributo;
 }
 

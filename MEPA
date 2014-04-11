@@ -1,2 +1,2 @@
-rails generate scaffold PersonsPersonID:int Nome:Varchar 
-TABELAteste
+rails generate model customer_id:INT amount:DOUBLE --force 
+rails generate model customer_id:INT amount:DOUBLE --force 
