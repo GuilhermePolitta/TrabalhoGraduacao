@@ -1,3 +1,5 @@
-CREATE TABLE Persons( PersonID int, Nome Varchar);
+CREATE TABLE orders (
+    customer_id INT,
+    amount DOUBLE,
+);
 
-COMMENT ON TABLE teste IS 'This is a testing table.';

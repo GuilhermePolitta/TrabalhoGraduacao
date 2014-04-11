@@ -1,8 +1,4 @@
 
-// Testar se funciona corretamente o empilhamento de parâmetros
-// passados por valor ou por referência.
-
-
 %{
 #include <stdio.h>
 #include <ctype.h>
@@ -14,9 +10,10 @@ int num_vars;
 int qual_aspas;
 char string[TAM_STRING];
 
-char atributo[TAM_TOKEN];
+//char atributo[TAM_TOKEN];
 char tipoAtributo[TAM_TOKEN];
 char especificacaoAtributo[TAM_TOKEN];
+
 
 %}
 
@@ -42,23 +39,23 @@ t_create	:
 ;
 
 add_campo_tabela: IDENT {
-						strncpy(atributo, token, TAM_TOKEN);
+						//strncpy(atributo, token, TAM_TOKEN);
 						geraCodigo (NULL, token);
 						geraCodigo (NULL, ":");
 					} IDENT  {
 					strncpy(tipoAtributo, token, TAM_TOKEN);
 						geraCodigo (NULL, token);
 						geraCodigo (NULL, " ");
-					} add_campo_tabela2
+					} 
 ;
 
-add_campo_tabela2	:	IDENT {
+/*add_campo_tabela2	:	IDENT {
 							strncpy(especificacaoAtributo, token, TAM_TOKEN);
 							if (!strcmp(token, "AUTO_INCREMENT")) {
 								printf("\nachei auto_increment, ignore\n");
 							}
 						} add_campo_tabela2 |
-;
+;*/
 //da pra criar um token pros tipos de possiveis de campos (int, varchar, etc) fica mais facil
 lista_ident: 	lista_ident  VIRGULA  add_campo_tabela| add_campo_tabela
 

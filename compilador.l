@@ -7,7 +7,6 @@
 #include "compilador.h"
 #include "compilador.tab.h"
 
-//#define IMPRIME(STR) {};
 #define IMPRIME(STR) printf("%s    # %s \n", STR, token);
 
 int nl = 1;  

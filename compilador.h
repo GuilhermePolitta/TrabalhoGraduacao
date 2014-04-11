@@ -1,10 +1,3 @@
-/*
- * -------------------------------------------------------------------
- *
- * Tipos, protótipos e vaiáveis globais do compilador
- *
- * ------------------------------------------------------------------- */
-
 #define TAM_TOKEN 16
 #define TAM_STRING 256
 
@@ -27,6 +20,23 @@ typedef enum simbolos {
  * variáveis globais
  * ------------------------------------------------------------------- */
 
+typedef int BOOL;
+
+typedef struct atributoTabela {
+	char nome[TAM_TOKEN];
+	char tipo[TAM_TOKEN];
+	int limite;
+	BOOL primary;
+	BOOL foreign;
+} atributoTabela;
+
+typedef struct table {
+	char nome[TAM_TOKEN];
+	atributoTabela *listaAtributos;
+	int tam;
+} table;
+
+
 extern simbolos simbolo, relacao;
 extern char token[TAM_TOKEN];
 extern char string[TAM_STRING];
@@ -34,9 +44,8 @@ extern int nivel_lexico;
 extern int desloc;
 extern int nl;
 
-
 simbolos simbolo, relacao;
 char token[TAM_TOKEN];
 
-
-
+atributoTabela *atributo;
+table *tabela;

@@ -63,7 +63,7 @@
 
 /* Copy the first part of user declarations.  */
 /* Line 371 of yacc.c  */
-#line 6 "compilador.y"
+#line 2 "compilador.y"
 
 #include <stdio.h>
 #include <ctype.h>
@@ -75,9 +75,14 @@ int num_vars;
 int qual_aspas;
 char string[TAM_STRING];
 
+//char atributo[TAM_TOKEN];
+char tipoAtributo[TAM_TOKEN];
+char especificacaoAtributo[TAM_TOKEN];
+
+
 
 /* Line 371 of yacc.c  */
-#line 81 "compilador.tab.c"
+#line 86 "compilador.tab.c"
 
 # ifndef YY_NULL
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -168,7 +173,7 @@ int yyparse ();
 /* Copy the second part of user declarations.  */
 
 /* Line 390 of yacc.c  */
-#line 172 "compilador.tab.c"
+#line 177 "compilador.tab.c"
 
 #ifdef short
 # undef short
@@ -475,9 +480,9 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    31,    31,    35,    37,    31,    40,    40,    48,    48,
-      57,    60,    63,    63,    57,    67,    67,    69,    67,    73,
-      74,    75,    78,    79,    80,    80
+       0,    32,    32,    36,    38,    32,    41,    41,    60,    60,
+      69,    72,    75,    75,    69,    79,    79,    81,    79,    85,
+      86,    87,    90,    91,    92,    92
 };
 #endif
 
@@ -1386,7 +1391,7 @@ yyreduce:
     {
         case 2:
 /* Line 1787 of yacc.c  */
-#line 31 "compilador.y"
+#line 32 "compilador.y"
     {
 				 geraCodigo (NULL, "rails generate scaffold "); 
 				}
@@ -1394,20 +1399,21 @@ yyreduce:
 
   case 3:
 /* Line 1787 of yacc.c  */
-#line 35 "compilador.y"
+#line 36 "compilador.y"
     {geraCodigo (NULL, token); }
     break;
 
   case 4:
 /* Line 1787 of yacc.c  */
-#line 37 "compilador.y"
+#line 38 "compilador.y"
     {geraCodigo (NULL, "\n"); }
     break;
 
   case 6:
 /* Line 1787 of yacc.c  */
-#line 40 "compilador.y"
+#line 41 "compilador.y"
     {
+						//strncpy(atributo, token, TAM_TOKEN);
 						geraCodigo (NULL, token);
 						geraCodigo (NULL, ":");
 					}
@@ -1415,8 +1421,9 @@ yyreduce:
 
   case 7:
 /* Line 1787 of yacc.c  */
-#line 43 "compilador.y"
+#line 45 "compilador.y"
     {
+					strncpy(tipoAtributo, token, TAM_TOKEN);
 						geraCodigo (NULL, token);
 						geraCodigo (NULL, " ");
 					}
@@ -1424,7 +1431,7 @@ yyreduce:
 
   case 10:
 /* Line 1787 of yacc.c  */
-#line 57 "compilador.y"
+#line 69 "compilador.y"
     {
 				 geraCodigo (NULL, "ALTERANDO"); 
 				}
@@ -1432,7 +1439,7 @@ yyreduce:
 
   case 11:
 /* Line 1787 of yacc.c  */
-#line 60 "compilador.y"
+#line 72 "compilador.y"
     {
 				 geraCodigo (NULL, "TABELA"); 
 				}
@@ -1440,25 +1447,25 @@ yyreduce:
 
   case 12:
 /* Line 1787 of yacc.c  */
-#line 63 "compilador.y"
+#line 75 "compilador.y"
     {geraCodigo (NULL, token); }
     break;
 
   case 13:
 /* Line 1787 of yacc.c  */
-#line 63 "compilador.y"
+#line 75 "compilador.y"
     {geraCodigo (NULL, "\n"); }
     break;
 
   case 15:
 /* Line 1787 of yacc.c  */
-#line 67 "compilador.y"
+#line 79 "compilador.y"
     {geraCodigo (NULL, token); }
     break;
 
   case 16:
 /* Line 1787 of yacc.c  */
-#line 67 "compilador.y"
+#line 79 "compilador.y"
     {
 
 			}
@@ -1466,31 +1473,31 @@ yyreduce:
 
   case 17:
 /* Line 1787 of yacc.c  */
-#line 69 "compilador.y"
+#line 81 "compilador.y"
     {geraCodigo (NULL, "\n"); }
     break;
 
   case 19:
 /* Line 1787 of yacc.c  */
-#line 73 "compilador.y"
+#line 85 "compilador.y"
     {geraCodigo (NULL, "TABELA");}
     break;
 
   case 20:
 /* Line 1787 of yacc.c  */
-#line 74 "compilador.y"
+#line 86 "compilador.y"
     {geraCodigo (NULL, "COLUNA");}
     break;
 
   case 21:
 /* Line 1787 of yacc.c  */
-#line 75 "compilador.y"
+#line 87 "compilador.y"
     {geraCodigo (NULL, "LINHA");}
     break;
 
 
 /* Line 1787 of yacc.c  */
-#line 1494 "compilador.tab.c"
+#line 1501 "compilador.tab.c"
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1722,7 +1729,7 @@ yyreturn:
 
 
 /* Line 2050 of yacc.c  */
-#line 83 "compilador.y"
+#line 95 "compilador.y"
 
 	
 main (int argc, char** argv) {
