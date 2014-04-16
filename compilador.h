@@ -56,6 +56,7 @@ simbolos simbolo, relacao;
 char token[TAM_TOKEN];
 
 atributoTabela *atributo;
+atributoTabela *atributoForegin;
 table *tabela;
 
 //modificado aqui
@@ -68,11 +69,15 @@ void setTipoAtributo(atributoTabela *atributoMod, char tipo[TAM_TOKEN]);
 
 void setPrimaryKey(atributoTabela *atributoMod, BOOL primary);
 
-void setForeignKey(atributoTabela *atributoMod, BOOL foreign);
+atributoTabela * setForeignKey(char nome[TAM_TOKEN], table *tableSource, BOOL foreign);
 
-void setForeignTable(atributoTabela *atributoMod, table *foreignTable);
+void setForeignTable(atributoTabela *atributoMod, char nomeTabela[TAM_TOKEN]);
+
+table *buscaTablea(char nome[TAM_TOKEN]);
 
 void setLimite(atributoTabela *atributoMod, int limite);
+
+atributoTabela *buscaAtributoNaTabela(char nome[TAM_TOKEN], table *tableSource);
 
 table *criaTabela (char nome[TAM_TOKEN]);
 

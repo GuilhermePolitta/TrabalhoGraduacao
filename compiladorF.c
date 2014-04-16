@@ -33,7 +33,6 @@ atributoTabela *criaAtributo(char nome[TAM_TOKEN]) {
 	strncpy(newAtributo->nome , nome, TAM_TOKEN);
 	setLimite(newAtributo,0);
 	setPrimaryKey(newAtributo,0);
-	setForeignKey(newAtributo,0);
 	newAtributo->foreign = 0;
 	return newAtributo;
 }
@@ -47,13 +46,46 @@ void setPrimaryKey(atributoTabela *atributoMod, BOOL primary) {
 	atributoMod->primary = primary;
 }
 
-void setForeignKey(atributoTabela *atributoMod, BOOL foreign) {
-	atributoMod->foreign = foreign;
+atributoTabela * setForeignKey(char nome[TAM_TOKEN], table *tableSource, BOOL foreign) {
+	atributoTabela *atributoMod = buscaAtributoNaTabela(nome, tableSource);
+	if (atributoMod != NULL) {
+		atributoMod->foreign = foreign;
+	}
+	
+	return atributoMod;
+	
+}
+
+void setForeignTable(atributoTabela *atributoMod, char nomeTabela[TAM_TOKEN]) {
+	table *tableForeing = buscaTablea(nomeTabela);
+	if (tableForeing != NULL) {
+		atributoMod->foreignTable = tableForeing;
+	}
 }
 
 void setLimite(atributoTabela *atributoMod, int limite) {
 	//TODO talvez ja mudar a string de tipo para ficar mais facil
 	atributoMod->limite = limite;
+}
+
+atributoTabela *buscaAtributoNaTabela(char nome[TAM_TOKEN], table *tableSource) {
+	int i = 0;
+	for (i=0;i<tableSource->tam;i++) {
+		if (strcmp(tableSource->listaAtributos[i].nome, nome) == 0 ) {
+			return &tableSource->listaAtributos[i];
+		}	
+	}
+	return NULL;
+}
+
+table *buscaTablea(char nome[TAM_TOKEN]) {
+	int i = 0;
+	for (i=0;i<lista->tam;i++) {
+		if (strcmp(lista->tabelas[i].nome, nome) == 0 ) {
+			return &lista->tabelas[i];
+		}
+	}
+	return NULL;
 }
 
 table *criaTabela (char nome[TAM_TOKEN]) {
@@ -87,6 +119,8 @@ void criaRailsFromTabela(table *tableSql) {
 		if (tableSql->listaAtributos[i].primary) {
 			continue;
 		} else if (tableSql->listaAtributos[i].foreign) {
+			geraCodigo (NULL, tableSql->listaAtributos[i].foreignTable->nome);
+			geraCodigo (NULL, ":references ");
 			//TODO logica de foreign key
 		} else {
 			geraCodigo (NULL, tableSql->listaAtributos[i].nome);
@@ -99,7 +133,7 @@ void criaRailsFromTabela(table *tableSql) {
 	geraCodigo (NULL, "--force \n");
 }
 
-void imprimeTabelas {
+void imprimeTabelas() {	
 	printf("lista->tam = %d\n", lista->tam);
 	int i;
 	for (i = 0; i < lista->tam; i++) {

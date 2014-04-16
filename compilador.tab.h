@@ -68,7 +68,10 @@ extern int yydebug;
      ON = 277,
      IS = 278,
      ASPAS_SIMPLES = 279,
-     ASPAS_DUPLAS = 280
+     ASPAS_DUPLAS = 280,
+     FOREIGN = 281,
+     KEY = 282,
+     REFERENCES = 283
    };
 #endif
 

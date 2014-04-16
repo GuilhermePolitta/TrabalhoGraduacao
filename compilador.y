@@ -39,14 +39,15 @@ lista_ident: 	lista_ident  VIRGULA  add_campo_tabela| add_campo_tabela
 
 add_campo_tabela:
 				FOREIGN KEY ABRE_PARENTESES IDENT {
-					//TODO foreign key
-					//Esse IDENT é o nome do atributo que já deve existir na tabela
-					//setForeignKey(token, 1);
+					atributoForegin = setForeignKey(token, tabela, 1);
 				} FECHA_PARENTESES REFERENCES IDENT {
+					setForeignTable(atributoForegin, token);
 					//TODO acesso a outra tabela
 					//Esse IDENT é o nome da tabela referenciada
 				} ABRE_PARENTESES IDENT {
+					
 					//Esse IDENT é o nome do atributo da tabela referenciada
+					//Nao eh utilizado
 				} FECHA_PARENTESES |
 				IDENT {
 					atributo = criaAtributo(token);

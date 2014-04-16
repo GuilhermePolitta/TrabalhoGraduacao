@@ -61,17 +61,19 @@ CREATE TABLE printers (
 create table computers_printers_junction (
   computer_id INT,
   printer_id INT,
-  FOREIGN KEY (computer_id) REFERENCES customers(customer_id),
-  FOREIGN KEY (printer_id) REFERENCES customers(customer_id)
+  FOREIGN KEY (computer_id) REFERENCES computers(computer_id),
+  FOREIGN KEY (printer_id) REFERENCES printers(printer_id)
 );
 
 // Acima não seria?:
 create table computers_printers_junction (
   computer_id INT,
   printer_id INT,
-  FOREIGN KEY (computer_id) REFERENCES computers(customer_id),
+  FOREIGN KEY (computer_id) REFERENCES computers(computer_id),
   FOREIGN KEY (printer_id) REFERENCES printers(printer_id)
 );
+
+Ah, sim claro. Foi um copy/paste do outro exemplos.
 
 Em rails:
 
