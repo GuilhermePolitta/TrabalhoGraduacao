@@ -8,3 +8,10 @@ CREATE TABLE things (
     amount DOUBLE,
     FOREIGN KEY (order_id) REFERENCES orders(customer_id)
 );
+
+CREATE TABLE customers (
+    customer_id INT AUTO_INCREMENT PRIMARY KEY,
+	order_id INT,
+	amount DOUBLE,
+    FOREIGN KEY (order_id) REFERENCES orders(bla)
+);

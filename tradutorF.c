@@ -32,7 +32,7 @@ atributoTabela *criaAtributo(char nome[TAM_TOKEN]) {
 	atributoTabela *newAtributo = malloc(sizeof(atributoTabela));
 	strncpy(newAtributo->nome , nome, TAM_TOKEN);
 	setLimite(newAtributo,0);
-	setPrimaryKey(newAtributo,0);
+	newAtributo->primary = 0;
 	newAtributo->foreign = 0;
 	return newAtributo;
 }
@@ -42,9 +42,18 @@ void setTipoAtributo(atributoTabela *atributoMod, char tipo[TAM_TOKEN]) {
 	strncpy(atributoMod->tipo, tipo, TAM_TOKEN);
 }
 
-void setPrimaryKey(atributoTabela *atributoMod, BOOL primary) {
-	atributoMod->primary = primary;
+atributoTabela * setPrimaryKey(char nome[TAM_TOKEN], table *tableSource, BOOL primary) {
+	atributoTabela *atributoMod = buscaAtributoNaTabela(nome, tableSource);
+	if (atributoMod != NULL) {
+		atributoMod->primary = primary;
+	}
 }
+
+/*void setPrimaryKey(atributoTabela *atributoMod, BOOL primary) {
+	
+	atributoMod->primary = primary;
+	printf("seting primary key of %s to %d\n", atributoMod->nome, atributoMod->primary);
+}*/
 
 atributoTabela * setForeignKey(char nome[TAM_TOKEN], table *tableSource, BOOL foreign) {
 	atributoTabela *atributoMod = buscaAtributoNaTabela(nome, tableSource);
@@ -139,4 +148,15 @@ void imprimeTabelas() {
 	for (i = 0; i < lista->tam; i++) {
 		printf("\ntable %d = %s\n\n", i, lista->tabelas[i].nome);
 	}
+}
+
+
+void imprimeConteudoTabela(table *tableSql) {	
+	printf("===================================\n");
+	printf("tableSql->tam = %d\n", tableSql->tam);
+		int i = 0;
+	for (i = 0; i< tableSql->tam; i++) {
+		printf("Atributo:%s primary:%d\n", tableSql->listaAtributos[i].nome, tableSql->listaAtributos[i].primary);
+	}
+	printf("===================================\n");
 }

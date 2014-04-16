@@ -12,7 +12,7 @@ typedef enum simbolos {
   simb_aspas_simples, simb_aspas_duplas,
   simb_create, simb_table, simb_column, simb_row, simb_alter,
   simb_comment, simb_on, simb_is,
-  simb_foreign, simb_key, simb_references
+  simb_foreign, simb_key, simb_references, simb_primary, simb_autoIncremente
 } simbolos;
 
 
@@ -67,7 +67,9 @@ atributoTabela *criaAtributo(char nome[TAM_TOKEN]);
 	
 void setTipoAtributo(atributoTabela *atributoMod, char tipo[TAM_TOKEN]);
 
-void setPrimaryKey(atributoTabela *atributoMod, BOOL primary);
+//void setPrimaryKey(atributoTabela *atributoMod, BOOL primary);
+
+atributoTabela * setPrimaryKey(char nome[TAM_TOKEN], table *tableSource, BOOL primary);
 
 atributoTabela * setForeignKey(char nome[TAM_TOKEN], table *tableSource, BOOL foreign);
 
@@ -84,3 +86,7 @@ table *criaTabela (char nome[TAM_TOKEN]);
 void addAtributoNaTabela(atributoTabela *atributoAdd, table *tableAdd);
 
 void criaRailsFromTabela(table *tableSql);
+
+void imprimeTabelas();
+
+void imprimeConteudoTabela(table *tableSql);

@@ -33,6 +33,18 @@ comentario "(*".*"*)"
 {descarte}
 
 {comentario}
+(?i:auto_increment) { simbolo  = simb_autoIncremente;  
+          strncpy (token, yytext, TAM_TOKEN);
+          IMPRIME("auto_increment ");
+          return AUTOINCREMENTE;
+ }
+
+(?i:primary) { simbolo  = simb_primary;  
+          strncpy (token, yytext, TAM_TOKEN);
+          IMPRIME("primary ");
+          return PRIMARY;
+ }
+
 
 {string} { simbolo = simb_string;
            strncpy (string, yytext, TAM_STRING);

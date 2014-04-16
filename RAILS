@@ -1,2 +1,3 @@
 rails generate model orders customer_id:INT amount:DOUBLE --force 
 rails generate model things orders:references amount:DOUBLE --force 
+rails generate model customers orders:references amount:DOUBLE --force 

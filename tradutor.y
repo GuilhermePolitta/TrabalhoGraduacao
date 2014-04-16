@@ -24,7 +24,7 @@ char especificacaoAtributo[TAM_TOKEN];
 %token CREATE ALTER
 %token COMMENT ON IS
 %token ASPAS_SIMPLES ASPAS_DUPLAS
-%token FOREIGN KEY REFERENCES
+%token FOREIGN KEY REFERENCES PRIMARY AUTOINCREMENTE
 
 %%
 
@@ -42,10 +42,7 @@ add_campo_tabela:
 					atributoForegin = setForeignKey(token, tabela, 1);
 				} FECHA_PARENTESES REFERENCES IDENT {
 					setForeignTable(atributoForegin, token);
-					//TODO acesso a outra tabela
-					//Esse IDENT é o nome da tabela referenciada
 				} ABRE_PARENTESES IDENT {
-					
 					//Esse IDENT é o nome do atributo da tabela referenciada
 					//Nao eh utilizado
 				} FECHA_PARENTESES |
@@ -54,8 +51,14 @@ add_campo_tabela:
 				} IDENT  {
 					setTipoAtributo(atributo, token);
 					addAtributoNaTabela(atributo, tabela);
-				} 
+				} primary_or_not
+				
 ;
+
+primary_or_not: AUTOINCREMENTE PRIMARY KEY {setPrimaryKey(atributo->nome, tabela, 1);}
+				|
+;
+				
 
 t_alter		:
 			ALTER {

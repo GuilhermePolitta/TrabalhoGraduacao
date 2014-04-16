@@ -13,4 +13,4 @@ tradutor.o : tradutor.h tradutorF.c
 	gcc -c tradutorF.c -o tradutor.o
 
 clean : 
-	rm -f tradutor.tab.* lex.yy.c 
+	rm -f tradutor.tab.* lex.yy.c  tradutor.o tradutor.output 
