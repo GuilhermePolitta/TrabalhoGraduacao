@@ -4,8 +4,8 @@
 #include<stdio.h>
 #include<string.h>
 
-#include "compilador.h"
-#include "compilador.tab.h"
+#include "tradutor.h"
+#include "tradutor.tab.h"
 
 #define IMPRIME(STR) printf("%s    # %s \n", STR, token);
 

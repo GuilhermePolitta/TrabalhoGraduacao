@@ -1,16 +1,16 @@
 $DEPURA=1
 
-compilador: lex.yy.c y.tab.c compilador.o compilador.h
-	gcc lex.yy.c compilador.tab.c compilador.o -o compilador -ll -ly -lc
+tradutor: lex.yy.c y.tab.c tradutor.o tradutor.h
+	gcc lex.yy.c tradutor.tab.c tradutor.o -o tradutor -ll -ly -lc
 
-lex.yy.c: compilador.l compilador.h
-	flex compilador.l
+lex.yy.c: tradutor.l tradutor.h
+	flex tradutor.l
 
-y.tab.c: compilador.y compilador.h
-	bison compilador.y -d -v
+y.tab.c: tradutor.y tradutor.h
+	bison tradutor.y -d -v
 
-compilador.o : compilador.h compiladorF.c
-	gcc -c compiladorF.c -o compilador.o
+tradutor.o : tradutor.h tradutorF.c
+	gcc -c tradutorF.c -o tradutor.o
 
 clean : 
-	rm -f compilador.tab.* lex.yy.c 
+	rm -f tradutor.tab.* lex.yy.c 

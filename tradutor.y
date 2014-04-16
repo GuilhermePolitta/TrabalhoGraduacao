@@ -4,7 +4,7 @@
 #include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
-#include "compilador.h"
+#include "tradutor.h"
 
 int num_vars;
 int qual_aspas;

@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "compilador.h"
+#include "tradutor.h"
 
 
 /* -------------------------------------------------------------------
@@ -13,7 +13,7 @@ FILE* fp=NULL;
 void geraCodigo (char* rot, char* comando) {
 
   if (fp == NULL) {
-    fp = fopen ("MEPA", "w");
+    fp = fopen ("RAILS", "w");
   }
 
   if ( rot == NULL ) {
