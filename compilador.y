@@ -24,6 +24,7 @@ char especificacaoAtributo[TAM_TOKEN];
 %token CREATE ALTER
 %token COMMENT ON IS
 %token ASPAS_SIMPLES ASPAS_DUPLAS
+%token FOREIGN KEY REFERENCES
 
 %%
 
@@ -33,29 +34,27 @@ t_create	:
 			ABRE_PARENTESES lista_ident FECHA_PARENTESES PONTO_E_VIRGULA  { criaRailsFromTabela(tabela); } prox_regra
 ;
 
-add_campo_tabela: IDENT {
-						atributo = criaAtributo(token);
-					} IDENT  {
-						setTipoAtributo(atributo, token);
-						addAtributoNaTabela(atributo, tabela);
-					} 
-;
-
-/*add_campo_tabela2	:	IDENT {
-							strncpy(especificacaoAtributo, token, TAM_TOKEN);
-							if (!strcmp(token, "AUTO_INCREMENT")) {
-								printf("\nachei auto_increment, ignore\n");
-							}
-						} add_campo_tabela2 |
-;*/
 //da pra criar um token pros tipos de possiveis de campos (int, varchar, etc) fica mais facil
 lista_ident: 	lista_ident  VIRGULA  add_campo_tabela| add_campo_tabela
 
-/*atributos	:
-			IDENT tipo_atributo {
-
-			}
-;*/
+add_campo_tabela:
+				FOREIGN KEY ABRE_PARENTESES IDENT {
+					//TODO foreign key
+					//Esse IDENT é o nome do atributo que já deve existir na tabela
+					//setForeignKey(token, 1);
+				} FECHA_PARENTESES REFERENCES IDENT {
+					//TODO acesso a outra tabela
+					//Esse IDENT é o nome da tabela referenciada
+				} ABRE_PARENTESES IDENT {
+					//Esse IDENT é o nome do atributo da tabela referenciada
+				} FECHA_PARENTESES |
+				IDENT {
+					atributo = criaAtributo(token);
+				} IDENT  {
+					setTipoAtributo(atributo, token);
+					addAtributoNaTabela(atributo, tabela);
+				} 
+;
 
 t_alter		:
 			ALTER {
@@ -94,13 +93,15 @@ main (int argc, char** argv) {
          printf("usage compilador <arq>a %d\n", argc);
          return(-1);
       }
-
    fp=fopen (argv[1], "r");
    if (fp == NULL) {
       printf("usage compilador <arq>b\n");
       return(-1);
    }
    qual_aspas = 0;
+
+   lista = (listaTabelas *) malloc (sizeof(listaTabelas));
+   lista->tam = 0;
 
 /* -------------------------------------------------------------------
  *  Inicia a Tabela de Símbolos

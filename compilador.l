@@ -88,6 +88,24 @@ comentario "(*".*"*)"
           return IS;
  }
 
+(?i:foreign) { simbolo  = simb_foreign;  
+          strncpy (token, yytext, TAM_TOKEN);
+          IMPRIME("foreign ");
+          return FOREIGN;
+ }
+
+(?i:key) { simbolo  = simb_key;  
+          strncpy (token, yytext, TAM_TOKEN);
+          IMPRIME("key ");
+          return KEY;
+ }
+
+(?i:references) { simbolo  = simb_references;  
+          strncpy (token, yytext, TAM_TOKEN);
+          IMPRIME("references ");
+          return REFERENCES;
+ }
+
 program { simbolo  = simb_program;  
           strncpy (token, yytext, TAM_TOKEN);
           IMPRIME("program ");

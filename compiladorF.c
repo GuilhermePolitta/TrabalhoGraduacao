@@ -62,6 +62,12 @@ table *criaTabela (char nome[TAM_TOKEN]) {
 	newTable->tam = 0;
 	printf("criei %s\n", newTable->nome);
 	newTable->listaAtributos = NULL;
+
+	//modificado daqui pra baixo
+	lista->tabelas = realloc(lista->tabelas, (lista->tam + 1) * (sizeof(table)));
+	lista->tabelas[lista->tam] = *newTable;
+	lista->tam++;
+
 	return newTable;
 }
 
@@ -76,6 +82,7 @@ void criaRailsFromTabela(table *tableSql) {
 	geraCodigo (NULL, tableSql->nome);
 	geraCodigo (NULL, " ");
 	int i = 0;
+
 	for (i = 0; i< tableSql->tam; i++) {
 		if (tableSql->listaAtributos[i].primary) {
 			continue;
@@ -92,4 +99,10 @@ void criaRailsFromTabela(table *tableSql) {
 	geraCodigo (NULL, "--force \n");
 }
 
-
+void imprimeTabelas {
+	printf("lista->tam = %d\n", lista->tam);
+	int i;
+	for (i = 0; i < lista->tam; i++) {
+		printf("\ntable %d = %s\n\n", i, lista->tabelas[i].nome);
+	}
+}

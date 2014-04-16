@@ -65,6 +65,14 @@ create table computers_printers_junction (
   FOREIGN KEY (printer_id) REFERENCES customers(customer_id)
 );
 
+// Acima não seria?:
+create table computers_printers_junction (
+  computer_id INT,
+  printer_id INT,
+  FOREIGN KEY (computer_id) REFERENCES computers(customer_id),
+  FOREIGN KEY (printer_id) REFERENCES printers(printer_id)
+);
+
 Em rails:
 
 rails g model computers model:string --force

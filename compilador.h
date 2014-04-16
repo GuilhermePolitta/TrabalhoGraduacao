@@ -11,7 +11,8 @@ typedef enum simbolos {
   simb_atribuicao, simb_abre_parenteses, simb_fecha_parenteses,
   simb_aspas_simples, simb_aspas_duplas,
   simb_create, simb_table, simb_column, simb_row, simb_alter,
-  simb_comment, simb_on, simb_is
+  simb_comment, simb_on, simb_is,
+  simb_foreign, simb_key, simb_references
 } simbolos;
 
 
@@ -28,6 +29,9 @@ typedef struct atributoTabela {
 	int limite;
 	BOOL primary;
 	BOOL foreign;
+
+	//modificado daqui pra baixo
+	struct table *foreignTable;
 } atributoTabela;
 
 typedef struct table {
@@ -36,6 +40,10 @@ typedef struct table {
 	int tam;
 } table;
 
+typedef struct listaTabelas {
+	table *tabelas;
+	int tam;
+}listaTabelas;
 
 extern simbolos simbolo, relacao;
 extern char token[TAM_TOKEN];
@@ -50,6 +58,9 @@ char token[TAM_TOKEN];
 atributoTabela *atributo;
 table *tabela;
 
+//modificado aqui
+listaTabelas *lista;
+
 
 atributoTabela *criaAtributo(char nome[TAM_TOKEN]);
 	
@@ -58,6 +69,8 @@ void setTipoAtributo(atributoTabela *atributoMod, char tipo[TAM_TOKEN]);
 void setPrimaryKey(atributoTabela *atributoMod, BOOL primary);
 
 void setForeignKey(atributoTabela *atributoMod, BOOL foreign);
+
+void setForeignTable(atributoTabela *atributoMod, table *foreignTable);
 
 void setLimite(atributoTabela *atributoMod, int limite);
 
