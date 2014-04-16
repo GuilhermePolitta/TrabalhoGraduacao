@@ -60,6 +60,7 @@ table *criaTabela (char nome[TAM_TOKEN]) {
 	table *newTable = malloc(sizeof(table));
 	strncpy(newTable->nome , nome, TAM_TOKEN);
 	newTable->tam = 0;
+	printf("criei %s\n", newTable->nome);
 	newTable->listaAtributos = NULL;
 	return newTable;
 }
@@ -72,6 +73,8 @@ void addAtributoNaTabela(atributoTabela *atributoAdd, table *tableAdd) {
 
 void criaRailsFromTabela(table *tableSql) {
 	geraCodigo (NULL, "rails generate model ");
+	geraCodigo (NULL, tableSql->nome);
+	geraCodigo (NULL, " ");
 	int i = 0;
 	for (i = 0; i< tableSql->tam; i++) {
 		if (tableSql->listaAtributos[i].primary) {
