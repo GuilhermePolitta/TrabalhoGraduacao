@@ -1,0 +1,732 @@
+Terminais não utilizados na gramática
+
+   PROGRAM
+   DOIS_PONTOS
+   PONTO
+   T_BEGIN
+   T_END
+   VAR
+   ATRIBUICAO
+   ASPAS_SIMPLES
+   ASPAS_DUPLAS
+
+
+Gramática
+
+    0 $accept: t_create $end
+
+    1 $@1: /* vazio */
+
+    2 $@2: /* vazio */
+
+    3 t_create: CREATE TABLE IDENT $@1 ABRE_PARENTESES lista_ident FECHA_PARENTESES PONTO_E_VIRGULA $@2 prox_regra
+
+    4 lista_ident: lista_ident VIRGULA add_campo_tabela
+    5            | add_campo_tabela
+
+    6 $@3: /* vazio */
+
+    7 $@4: /* vazio */
+
+    8 $@5: /* vazio */
+
+    9 add_campo_tabela: FOREIGN KEY ABRE_PARENTESES IDENT $@3 FECHA_PARENTESES REFERENCES IDENT $@4 ABRE_PARENTESES IDENT $@5 FECHA_PARENTESES
+
+   10 $@6: /* vazio */
+
+   11 $@7: /* vazio */
+
+   12 add_campo_tabela: IDENT $@6 IDENT $@7 restriction_or_not
+
+   13 restriction_or_not: ABRE_PARENTESES NUMERO FECHA_PARENTESES primary_or_not
+   14                   | primary_or_not
+
+   15 primary_or_not: AUTOINCREMENTE PRIMARY KEY
+   16               | PRIMARY KEY
+   17               | /* vazio */
+
+   18 $@8: /* vazio */
+
+   19 $@9: /* vazio */
+
+   20 $@10: /* vazio */
+
+   21 $@11: /* vazio */
+
+   22 t_alter: ALTER $@8 TABLE $@9 IDENT $@10 PONTO_E_VIRGULA $@11 prox_regra
+
+   23 $@12: /* vazio */
+
+   24 $@13: /* vazio */
+
+   25 $@14: /* vazio */
+
+   26 t_comment: COMMENT ON tipos IDENT $@12 IS $@13 STRING PONTO_E_VIRGULA $@14 prox_regra
+
+   27 tipos: TABLE
+   28      | COLUMN
+   29      | ROW
+
+   30 prox_regra: t_alter
+   31           | t_create
+   32           | t_comment
+   33           | /* vazio */
+
+
+Terminais, com as regras onde eles aparecem
+
+$end (0) 0
+error (256)
+PROGRAM (258)
+ABRE_PARENTESES (259) 3 9 13
+FECHA_PARENTESES (260) 3 9 13
+VIRGULA (261) 4
+PONTO_E_VIRGULA (262) 3 22 26
+DOIS_PONTOS (263)
+PONTO (264)
+T_BEGIN (265)
+T_END (266)
+VAR (267)
+IDENT (268) 3 9 12 22 26
+ATRIBUICAO (269)
+STRING (270) 26
+TABLE (271) 3 22 27
+COLUMN (272) 28
+ROW (273) 29
+CREATE (274) 3
+ALTER (275) 22
+COMMENT (276) 26
+ON (277) 26
+IS (278) 26
+ASPAS_SIMPLES (279)
+ASPAS_DUPLAS (280)
+FOREIGN (281) 9
+KEY (282) 9 15 16
+REFERENCES (283) 9
+PRIMARY (284) 15 16
+AUTOINCREMENTE (285) 15
+NUMERO (286) 13
+
+
+Não-terminais com as regras onde eles aparecem
+
+$accept (32)
+    à esquerda: 0
+t_create (33)
+    à esquerda: 3, à direita: 0 31
+$@1 (34)
+    à esquerda: 1, à direita: 3
+$@2 (35)
+    à esquerda: 2, à direita: 3
+lista_ident (36)
+    à esquerda: 4 5, à direita: 3 4
+add_campo_tabela (37)
+    à esquerda: 9 12, à direita: 4 5
+$@3 (38)
+    à esquerda: 6, à direita: 9
+$@4 (39)
+    à esquerda: 7, à direita: 9
+$@5 (40)
+    à esquerda: 8, à direita: 9
+$@6 (41)
+    à esquerda: 10, à direita: 12
+$@7 (42)
+    à esquerda: 11, à direita: 12
+restriction_or_not (43)
+    à esquerda: 13 14, à direita: 12
+primary_or_not (44)
+    à esquerda: 15 16 17, à direita: 13 14
+t_alter (45)
+    à esquerda: 22, à direita: 30
+$@8 (46)
+    à esquerda: 18, à direita: 22
+$@9 (47)
+    à esquerda: 19, à direita: 22
+$@10 (48)
+    à esquerda: 20, à direita: 22
+$@11 (49)
+    à esquerda: 21, à direita: 22
+t_comment (50)
+    à esquerda: 26, à direita: 32
+$@12 (51)
+    à esquerda: 23, à direita: 26
+$@13 (52)
+    à esquerda: 24, à direita: 26
+$@14 (53)
+    à esquerda: 25, à direita: 26
+tipos (54)
+    à esquerda: 27 28 29, à direita: 26
+prox_regra (55)
+    à esquerda: 30 31 32 33, à direita: 3 22 26
+
+
+State 0
+
+    0 $accept: . t_create $end
+
+    CREATE  deslocar, e ir ao estado 1
+
+    t_create  ir ao estado 2
+
+
+State 1
+
+    3 t_create: CREATE . TABLE IDENT $@1 ABRE_PARENTESES lista_ident FECHA_PARENTESES PONTO_E_VIRGULA $@2 prox_regra
+
+    TABLE  deslocar, e ir ao estado 3
+
+
+State 2
+
+    0 $accept: t_create . $end
+
+    $end  deslocar, e ir ao estado 4
+
+
+State 3
+
+    3 t_create: CREATE TABLE . IDENT $@1 ABRE_PARENTESES lista_ident FECHA_PARENTESES PONTO_E_VIRGULA $@2 prox_regra
+
+    IDENT  deslocar, e ir ao estado 5
+
+
+State 4
+
+    0 $accept: t_create $end .
+
+    $padrão  aceitar
+
+
+State 5
+
+    3 t_create: CREATE TABLE IDENT . $@1 ABRE_PARENTESES lista_ident FECHA_PARENTESES PONTO_E_VIRGULA $@2 prox_regra
+
+    $padrão  reduzir usando a regra 1 ($@1)
+
+    $@1  ir ao estado 6
+
+
+State 6
+
+    3 t_create: CREATE TABLE IDENT $@1 . ABRE_PARENTESES lista_ident FECHA_PARENTESES PONTO_E_VIRGULA $@2 prox_regra
+
+    ABRE_PARENTESES  deslocar, e ir ao estado 7
+
+
+State 7
+
+    3 t_create: CREATE TABLE IDENT $@1 ABRE_PARENTESES . lista_ident FECHA_PARENTESES PONTO_E_VIRGULA $@2 prox_regra
+
+    IDENT    deslocar, e ir ao estado 8
+    FOREIGN  deslocar, e ir ao estado 9
+
+    lista_ident       ir ao estado 10
+    add_campo_tabela  ir ao estado 11
+
+
+State 8
+
+   12 add_campo_tabela: IDENT . $@6 IDENT $@7 restriction_or_not
+
+    $padrão  reduzir usando a regra 10 ($@6)
+
+    $@6  ir ao estado 12
+
+
+State 9
+
+    9 add_campo_tabela: FOREIGN . KEY ABRE_PARENTESES IDENT $@3 FECHA_PARENTESES REFERENCES IDENT $@4 ABRE_PARENTESES IDENT $@5 FECHA_PARENTESES
+
+    KEY  deslocar, e ir ao estado 13
+
+
+State 10
+
+    3 t_create: CREATE TABLE IDENT $@1 ABRE_PARENTESES lista_ident . FECHA_PARENTESES PONTO_E_VIRGULA $@2 prox_regra
+    4 lista_ident: lista_ident . VIRGULA add_campo_tabela
+
+    FECHA_PARENTESES  deslocar, e ir ao estado 14
+    VIRGULA           deslocar, e ir ao estado 15
+
+
+State 11
+
+    5 lista_ident: add_campo_tabela .
+
+    $padrão  reduzir usando a regra 5 (lista_ident)
+
+
+State 12
+
+   12 add_campo_tabela: IDENT $@6 . IDENT $@7 restriction_or_not
+
+    IDENT  deslocar, e ir ao estado 16
+
+
+State 13
+
+    9 add_campo_tabela: FOREIGN KEY . ABRE_PARENTESES IDENT $@3 FECHA_PARENTESES REFERENCES IDENT $@4 ABRE_PARENTESES IDENT $@5 FECHA_PARENTESES
+
+    ABRE_PARENTESES  deslocar, e ir ao estado 17
+
+
+State 14
+
+    3 t_create: CREATE TABLE IDENT $@1 ABRE_PARENTESES lista_ident FECHA_PARENTESES . PONTO_E_VIRGULA $@2 prox_regra
+
+    PONTO_E_VIRGULA  deslocar, e ir ao estado 18
+
+
+State 15
+
+    4 lista_ident: lista_ident VIRGULA . add_campo_tabela
+
+    IDENT    deslocar, e ir ao estado 8
+    FOREIGN  deslocar, e ir ao estado 9
+
+    add_campo_tabela  ir ao estado 19
+
+
+State 16
+
+   12 add_campo_tabela: IDENT $@6 IDENT . $@7 restriction_or_not
+
+    $padrão  reduzir usando a regra 11 ($@7)
+
+    $@7  ir ao estado 20
+
+
+State 17
+
+    9 add_campo_tabela: FOREIGN KEY ABRE_PARENTESES . IDENT $@3 FECHA_PARENTESES REFERENCES IDENT $@4 ABRE_PARENTESES IDENT $@5 FECHA_PARENTESES
+
+    IDENT  deslocar, e ir ao estado 21
+
+
+State 18
+
+    3 t_create: CREATE TABLE IDENT $@1 ABRE_PARENTESES lista_ident FECHA_PARENTESES PONTO_E_VIRGULA . $@2 prox_regra
+
+    $padrão  reduzir usando a regra 2 ($@2)
+
+    $@2  ir ao estado 22
+
+
+State 19
+
+    4 lista_ident: lista_ident VIRGULA add_campo_tabela .
+
+    $padrão  reduzir usando a regra 4 (lista_ident)
+
+
+State 20
+
+   12 add_campo_tabela: IDENT $@6 IDENT $@7 . restriction_or_not
+
+    ABRE_PARENTESES  deslocar, e ir ao estado 23
+    PRIMARY          deslocar, e ir ao estado 24
+    AUTOINCREMENTE   deslocar, e ir ao estado 25
+
+    $padrão  reduzir usando a regra 17 (primary_or_not)
+
+    restriction_or_not  ir ao estado 26
+    primary_or_not      ir ao estado 27
+
+
+State 21
+
+    9 add_campo_tabela: FOREIGN KEY ABRE_PARENTESES IDENT . $@3 FECHA_PARENTESES REFERENCES IDENT $@4 ABRE_PARENTESES IDENT $@5 FECHA_PARENTESES
+
+    $padrão  reduzir usando a regra 6 ($@3)
+
+    $@3  ir ao estado 28
+
+
+State 22
+
+    3 t_create: CREATE TABLE IDENT $@1 ABRE_PARENTESES lista_ident FECHA_PARENTESES PONTO_E_VIRGULA $@2 . prox_regra
+
+    CREATE   deslocar, e ir ao estado 1
+    ALTER    deslocar, e ir ao estado 29
+    COMMENT  deslocar, e ir ao estado 30
+
+    $padrão  reduzir usando a regra 33 (prox_regra)
+
+    t_create    ir ao estado 31
+    t_alter     ir ao estado 32
+    t_comment   ir ao estado 33
+    prox_regra  ir ao estado 34
+
+
+State 23
+
+   13 restriction_or_not: ABRE_PARENTESES . NUMERO FECHA_PARENTESES primary_or_not
+
+    NUMERO  deslocar, e ir ao estado 35
+
+
+State 24
+
+   16 primary_or_not: PRIMARY . KEY
+
+    KEY  deslocar, e ir ao estado 36
+
+
+State 25
+
+   15 primary_or_not: AUTOINCREMENTE . PRIMARY KEY
+
+    PRIMARY  deslocar, e ir ao estado 37
+
+
+State 26
+
+   12 add_campo_tabela: IDENT $@6 IDENT $@7 restriction_or_not .
+
+    $padrão  reduzir usando a regra 12 (add_campo_tabela)
+
+
+State 27
+
+   14 restriction_or_not: primary_or_not .
+
+    $padrão  reduzir usando a regra 14 (restriction_or_not)
+
+
+State 28
+
+    9 add_campo_tabela: FOREIGN KEY ABRE_PARENTESES IDENT $@3 . FECHA_PARENTESES REFERENCES IDENT $@4 ABRE_PARENTESES IDENT $@5 FECHA_PARENTESES
+
+    FECHA_PARENTESES  deslocar, e ir ao estado 38
+
+
+State 29
+
+   22 t_alter: ALTER . $@8 TABLE $@9 IDENT $@10 PONTO_E_VIRGULA $@11 prox_regra
+
+    $padrão  reduzir usando a regra 18 ($@8)
+
+    $@8  ir ao estado 39
+
+
+State 30
+
+   26 t_comment: COMMENT . ON tipos IDENT $@12 IS $@13 STRING PONTO_E_VIRGULA $@14 prox_regra
+
+    ON  deslocar, e ir ao estado 40
+
+
+State 31
+
+   31 prox_regra: t_create .
+
+    $padrão  reduzir usando a regra 31 (prox_regra)
+
+
+State 32
+
+   30 prox_regra: t_alter .
+
+    $padrão  reduzir usando a regra 30 (prox_regra)
+
+
+State 33
+
+   32 prox_regra: t_comment .
+
+    $padrão  reduzir usando a regra 32 (prox_regra)
+
+
+State 34
+
+    3 t_create: CREATE TABLE IDENT $@1 ABRE_PARENTESES lista_ident FECHA_PARENTESES PONTO_E_VIRGULA $@2 prox_regra .
+
+    $padrão  reduzir usando a regra 3 (t_create)
+
+
+State 35
+
+   13 restriction_or_not: ABRE_PARENTESES NUMERO . FECHA_PARENTESES primary_or_not
+
+    FECHA_PARENTESES  deslocar, e ir ao estado 41
+
+
+State 36
+
+   16 primary_or_not: PRIMARY KEY .
+
+    $padrão  reduzir usando a regra 16 (primary_or_not)
+
+
+State 37
+
+   15 primary_or_not: AUTOINCREMENTE PRIMARY . KEY
+
+    KEY  deslocar, e ir ao estado 42
+
+
+State 38
+
+    9 add_campo_tabela: FOREIGN KEY ABRE_PARENTESES IDENT $@3 FECHA_PARENTESES . REFERENCES IDENT $@4 ABRE_PARENTESES IDENT $@5 FECHA_PARENTESES
+
+    REFERENCES  deslocar, e ir ao estado 43
+
+
+State 39
+
+   22 t_alter: ALTER $@8 . TABLE $@9 IDENT $@10 PONTO_E_VIRGULA $@11 prox_regra
+
+    TABLE  deslocar, e ir ao estado 44
+
+
+State 40
+
+   26 t_comment: COMMENT ON . tipos IDENT $@12 IS $@13 STRING PONTO_E_VIRGULA $@14 prox_regra
+
+    TABLE   deslocar, e ir ao estado 45
+    COLUMN  deslocar, e ir ao estado 46
+    ROW     deslocar, e ir ao estado 47
+
+    tipos  ir ao estado 48
+
+
+State 41
+
+   13 restriction_or_not: ABRE_PARENTESES NUMERO FECHA_PARENTESES . primary_or_not
+
+    PRIMARY         deslocar, e ir ao estado 24
+    AUTOINCREMENTE  deslocar, e ir ao estado 25
+
+    $padrão  reduzir usando a regra 17 (primary_or_not)
+
+    primary_or_not  ir ao estado 49
+
+
+State 42
+
+   15 primary_or_not: AUTOINCREMENTE PRIMARY KEY .
+
+    $padrão  reduzir usando a regra 15 (primary_or_not)
+
+
+State 43
+
+    9 add_campo_tabela: FOREIGN KEY ABRE_PARENTESES IDENT $@3 FECHA_PARENTESES REFERENCES . IDENT $@4 ABRE_PARENTESES IDENT $@5 FECHA_PARENTESES
+
+    IDENT  deslocar, e ir ao estado 50
+
+
+State 44
+
+   22 t_alter: ALTER $@8 TABLE . $@9 IDENT $@10 PONTO_E_VIRGULA $@11 prox_regra
+
+    $padrão  reduzir usando a regra 19 ($@9)
+
+    $@9  ir ao estado 51
+
+
+State 45
+
+   27 tipos: TABLE .
+
+    $padrão  reduzir usando a regra 27 (tipos)
+
+
+State 46
+
+   28 tipos: COLUMN .
+
+    $padrão  reduzir usando a regra 28 (tipos)
+
+
+State 47
+
+   29 tipos: ROW .
+
+    $padrão  reduzir usando a regra 29 (tipos)
+
+
+State 48
+
+   26 t_comment: COMMENT ON tipos . IDENT $@12 IS $@13 STRING PONTO_E_VIRGULA $@14 prox_regra
+
+    IDENT  deslocar, e ir ao estado 52
+
+
+State 49
+
+   13 restriction_or_not: ABRE_PARENTESES NUMERO FECHA_PARENTESES primary_or_not .
+
+    $padrão  reduzir usando a regra 13 (restriction_or_not)
+
+
+State 50
+
+    9 add_campo_tabela: FOREIGN KEY ABRE_PARENTESES IDENT $@3 FECHA_PARENTESES REFERENCES IDENT . $@4 ABRE_PARENTESES IDENT $@5 FECHA_PARENTESES
+
+    $padrão  reduzir usando a regra 7 ($@4)
+
+    $@4  ir ao estado 53
+
+
+State 51
+
+   22 t_alter: ALTER $@8 TABLE $@9 . IDENT $@10 PONTO_E_VIRGULA $@11 prox_regra
+
+    IDENT  deslocar, e ir ao estado 54
+
+
+State 52
+
+   26 t_comment: COMMENT ON tipos IDENT . $@12 IS $@13 STRING PONTO_E_VIRGULA $@14 prox_regra
+
+    $padrão  reduzir usando a regra 23 ($@12)
+
+    $@12  ir ao estado 55
+
+
+State 53
+
+    9 add_campo_tabela: FOREIGN KEY ABRE_PARENTESES IDENT $@3 FECHA_PARENTESES REFERENCES IDENT $@4 . ABRE_PARENTESES IDENT $@5 FECHA_PARENTESES
+
+    ABRE_PARENTESES  deslocar, e ir ao estado 56
+
+
+State 54
+
+   22 t_alter: ALTER $@8 TABLE $@9 IDENT . $@10 PONTO_E_VIRGULA $@11 prox_regra
+
+    $padrão  reduzir usando a regra 20 ($@10)
+
+    $@10  ir ao estado 57
+
+
+State 55
+
+   26 t_comment: COMMENT ON tipos IDENT $@12 . IS $@13 STRING PONTO_E_VIRGULA $@14 prox_regra
+
+    IS  deslocar, e ir ao estado 58
+
+
+State 56
+
+    9 add_campo_tabela: FOREIGN KEY ABRE_PARENTESES IDENT $@3 FECHA_PARENTESES REFERENCES IDENT $@4 ABRE_PARENTESES . IDENT $@5 FECHA_PARENTESES
+
+    IDENT  deslocar, e ir ao estado 59
+
+
+State 57
+
+   22 t_alter: ALTER $@8 TABLE $@9 IDENT $@10 . PONTO_E_VIRGULA $@11 prox_regra
+
+    PONTO_E_VIRGULA  deslocar, e ir ao estado 60
+
+
+State 58
+
+   26 t_comment: COMMENT ON tipos IDENT $@12 IS . $@13 STRING PONTO_E_VIRGULA $@14 prox_regra
+
+    $padrão  reduzir usando a regra 24 ($@13)
+
+    $@13  ir ao estado 61
+
+
+State 59
+
+    9 add_campo_tabela: FOREIGN KEY ABRE_PARENTESES IDENT $@3 FECHA_PARENTESES REFERENCES IDENT $@4 ABRE_PARENTESES IDENT . $@5 FECHA_PARENTESES
+
+    $padrão  reduzir usando a regra 8 ($@5)
+
+    $@5  ir ao estado 62
+
+
+State 60
+
+   22 t_alter: ALTER $@8 TABLE $@9 IDENT $@10 PONTO_E_VIRGULA . $@11 prox_regra
+
+    $padrão  reduzir usando a regra 21 ($@11)
+
+    $@11  ir ao estado 63
+
+
+State 61
+
+   26 t_comment: COMMENT ON tipos IDENT $@12 IS $@13 . STRING PONTO_E_VIRGULA $@14 prox_regra
+
+    STRING  deslocar, e ir ao estado 64
+
+
+State 62
+
+    9 add_campo_tabela: FOREIGN KEY ABRE_PARENTESES IDENT $@3 FECHA_PARENTESES REFERENCES IDENT $@4 ABRE_PARENTESES IDENT $@5 . FECHA_PARENTESES
+
+    FECHA_PARENTESES  deslocar, e ir ao estado 65
+
+
+State 63
+
+   22 t_alter: ALTER $@8 TABLE $@9 IDENT $@10 PONTO_E_VIRGULA $@11 . prox_regra
+
+    CREATE   deslocar, e ir ao estado 1
+    ALTER    deslocar, e ir ao estado 29
+    COMMENT  deslocar, e ir ao estado 30
+
+    $padrão  reduzir usando a regra 33 (prox_regra)
+
+    t_create    ir ao estado 31
+    t_alter     ir ao estado 32
+    t_comment   ir ao estado 33
+    prox_regra  ir ao estado 66
+
+
+State 64
+
+   26 t_comment: COMMENT ON tipos IDENT $@12 IS $@13 STRING . PONTO_E_VIRGULA $@14 prox_regra
+
+    PONTO_E_VIRGULA  deslocar, e ir ao estado 67
+
+
+State 65
+
+    9 add_campo_tabela: FOREIGN KEY ABRE_PARENTESES IDENT $@3 FECHA_PARENTESES REFERENCES IDENT $@4 ABRE_PARENTESES IDENT $@5 FECHA_PARENTESES .
+
+    $padrão  reduzir usando a regra 9 (add_campo_tabela)
+
+
+State 66
+
+   22 t_alter: ALTER $@8 TABLE $@9 IDENT $@10 PONTO_E_VIRGULA $@11 prox_regra .
+
+    $padrão  reduzir usando a regra 22 (t_alter)
+
+
+State 67
+
+   26 t_comment: COMMENT ON tipos IDENT $@12 IS $@13 STRING PONTO_E_VIRGULA . $@14 prox_regra
+
+    $padrão  reduzir usando a regra 25 ($@14)
+
+    $@14  ir ao estado 68
+
+
+State 68
+
+   26 t_comment: COMMENT ON tipos IDENT $@12 IS $@13 STRING PONTO_E_VIRGULA $@14 . prox_regra
+
+    CREATE   deslocar, e ir ao estado 1
+    ALTER    deslocar, e ir ao estado 29
+    COMMENT  deslocar, e ir ao estado 30
+
+    $padrão  reduzir usando a regra 33 (prox_regra)
+
+    t_create    ir ao estado 31
+    t_alter     ir ao estado 32
+    t_comment   ir ao estado 33
+    prox_regra  ir ao estado 69
+
+
+State 69
+
+   26 t_comment: COMMENT ON tipos IDENT $@12 IS $@13 STRING PONTO_E_VIRGULA $@14 prox_regra .
+
+    $padrão  reduzir usando a regra 26 (t_comment)

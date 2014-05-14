@@ -81,3 +81,25 @@ rails g model computers model:string --force
 rails g model printers ip:string --force
 rails g model computers_printers_junction computers:references printers:references --force
 
+
+
+
+/// outros exemplos
+CREATE TABLE orders (
+    customer_id INT,
+    amount DOUBLE
+);
+
+CREATE TABLE things (
+    order_id INT,
+    amount DOUBLE,
+    FOREIGN KEY (order_id) REFERENCES orders(customer_id)
+);
+
+CREATE TABLE customers (
+    customer_id INT AUTO_INCREMENT PRIMARY KEY,
+	order_id INT,
+	amount DOUBLE,
+    FOREIGN KEY (order_id) REFERENCES orders(bla)
+);
+

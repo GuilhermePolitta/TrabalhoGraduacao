@@ -24,7 +24,7 @@ char especificacaoAtributo[TAM_TOKEN];
 %token CREATE ALTER
 %token COMMENT ON IS
 %token ASPAS_SIMPLES ASPAS_DUPLAS
-%token FOREIGN KEY REFERENCES PRIMARY AUTOINCREMENTE
+%token FOREIGN KEY REFERENCES PRIMARY AUTOINCREMENTE NUMERO
 
 %%
 
@@ -51,11 +51,18 @@ add_campo_tabela:
 				} IDENT  {
 					setTipoAtributo(atributo, token);
 					addAtributoNaTabela(atributo, tabela);
-				} primary_or_not
-				
+				} restriction_or_not 
+;
+
+restriction_or_not: ABRE_PARENTESES NUMERO FECHA_PARENTESES primary_or_not
+					| primary_or_not
 ;
 
 primary_or_not: AUTOINCREMENTE PRIMARY KEY {setPrimaryKey(atributo->nome, tabela, 1);}
+				| PRIMARY KEY {
+					
+					// Nesse caso eh primary key mas nao eh um campo de ID e portanto nao pode ser ignorado
+					setPrimaryKey(atributo->nome, tabela, 0);}
 				|
 ;
 				

@@ -118,6 +118,24 @@ void addAtributoNaTabela(atributoTabela *atributoAdd, table *tableAdd) {
 	tableAdd->tam++;
 }
 
+char *getTipoCorretoAtributo(atributoTabela *atributoAdd) {
+	if (strcmp(atributoAdd->tipo, "VARCHAR") == 0 ) {
+		char *retorno = malloc(TAM_TOKEN *sizeof(char));
+		strcpy(retorno, "string");
+		return retorno;
+	} else if (strcmp(atributoAdd->tipo, "DOUBLE") == 0 ) {
+		char *retorno = malloc(TAM_TOKEN *sizeof(char));
+		strcpy(retorno, "decimal{42.6}");
+		return retorno; 
+	} else if (strcmp(atributoAdd->tipo, "INT") == 0 ) {
+		char *retorno = malloc(TAM_TOKEN *sizeof(char));
+		strcpy(retorno, "integer");
+		return retorno; 
+	} else {
+		return atributoAdd->tipo;
+	}
+}
+
 void criaRailsFromTabela(table *tableSql) {
 	geraCodigo (NULL, "rails generate model ");
 	geraCodigo (NULL, tableSql->nome);
@@ -134,7 +152,7 @@ void criaRailsFromTabela(table *tableSql) {
 		} else {
 			geraCodigo (NULL, tableSql->listaAtributos[i].nome);
 			geraCodigo (NULL, ":");
-			geraCodigo (NULL, tableSql->listaAtributos[i].tipo);
+			geraCodigo (NULL, getTipoCorretoAtributo(&tableSql->listaAtributos[i]));
 			// TODO logica de limite (aqui ou no setLimite)
 			geraCodigo (NULL, " ");
 		}

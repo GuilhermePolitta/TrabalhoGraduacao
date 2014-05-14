@@ -90,3 +90,5 @@ void criaRailsFromTabela(table *tableSql);
 void imprimeTabelas();
 
 void imprimeConteudoTabela(table *tableSql);
+
+char *getTipoCorretoAtributo(atributoTabela *atributoAdd);

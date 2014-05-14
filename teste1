@@ -11,6 +11,8 @@ CREATE TABLE things (
 
 CREATE TABLE customers (
     customer_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255),
+    cel_number INT,
 	order_id INT,
 	amount DOUBLE,
     FOREIGN KEY (order_id) REFERENCES orders(bla)

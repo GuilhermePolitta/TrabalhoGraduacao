@@ -33,6 +33,14 @@ comentario "(*".*"*)"
 {descarte}
 
 {comentario}
+
+{numero} {
+		simbolo  = simb_numero;  
+        strncpy (token, yytext, TAM_TOKEN);
+        IMPRIME("numero ");
+        return NUMERO;
+}
+
 (?i:auto_increment) { simbolo  = simb_autoIncremente;  
           strncpy (token, yytext, TAM_TOKEN);
           IMPRIME("auto_increment ");
