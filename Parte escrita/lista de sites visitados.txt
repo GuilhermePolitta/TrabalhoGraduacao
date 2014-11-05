@@ -17,3 +17,16 @@ LALR
 
 http://en.wikipedia.org/wiki/LALR_parser
 
+http://publications.csail.mit.edu/lcs/pubs/pdf/MIT-LCS-TR-065.pdf
+
+http://books.google.com.br/books?id=nEA9AAAAIAAJ&pg=PA87&redir_esc=y#v=onepage&q&f=false
+
+
+Lex
+
+http://dinosaur.compilertools.net/lex/index.html
+
+http://en.wikipedia.org/wiki/Lex_(software)
+
+http://pt.wikipedia.org/wiki/Lex
+
