@@ -1,4 +1,4 @@
-YACC
+﻿YACC
 
 http://dinosaur.compilertools.net/
 
@@ -44,3 +44,33 @@ http://www.nilc.icmc.usp.br/minigramatica/mini/analisesintaticadefinicao.htm
   Analise léxica
   
   http://www.dca.fee.unicamp.br/cursos/EA876/apostila/HTML/node50.html
+
+SQL
+
+http://en.wikipedia.org/wiki/SQL
+
+http://en.wikipedia.org/wiki/Data_definition_language
+
+http://en.wikipedia.org/wiki/Insert_(SQL)
+
+http://en.wikipedia.org/wiki/Data_manipulation_language
+
+SGBD
+
+http://en.wikipedia.org/wiki/Database
+
+http://pt.wikipedia.org/wiki/Sistema_de_gerenciamento_de_banco_de_dados
+
+http://www.inf.ufsc.br/~ronaldo/ine5613/2-sgbd.pdf
+
+Rails
+
+http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller
+
+http://pt.wikipedia.org/wiki/Active_record
+
+http://pt.wikipedia.org/wiki/Ruby_on_Rails
+
+http://en.wikipedia.org/wiki/Ruby_on_Rails
+
+http://rubyonrails.org/
