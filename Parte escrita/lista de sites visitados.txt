@@ -30,3 +30,13 @@ http://en.wikipedia.org/wiki/Lex_(software)
 
 http://pt.wikipedia.org/wiki/Lex
 
+
+Análise sintática
+
+
+http://pt.wikipedia.org/wiki/An%C3%A1lise_sint%C3%A1tica_(computa%C3%A7%C3%A3o)
+http://en.wikipedia.org/wiki/Parsing
+http://www.nilc.icmc.usp.br/minigramatica/mini/analisesintaticadefinicao.htm
+ Mitchell P. Marcus. Theory of Syntactic Recognition for Natural Languages. Cambridge: MIT Press, 1980. 335 pp. ISBN 0262131498.
+ 
+  Aho, A.V., Sethi, R. and Ullman ,J.D. (1986) " Compilers: principles, techniques, and tools." Addison-Wesley Longman Publishing Co., Inc. Boston, MA, USA.
