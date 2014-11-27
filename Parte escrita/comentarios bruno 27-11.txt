@@ -1,0 +1,49 @@
+(1) Faltou dizer que existem frameworks que permitem a criação de uma
+aplicação a partir do seu bds. Exemplos incluem .... . 
+
+O framework Rails é um dos framworks citados, e apresenta uma forma de
+criar aplicações a partir do schema de bancos de dados utilizando a
+linha de comando. 
+
+Este trabalho descreve como criar esqueletos de aplicações Ruby on
+Rails a partir de schemas de bancos de dados de apliações
+legadas. ... 
+
+
+(2) As questões de integridade parecem dispensáveis. Tem de concentrar
+no conceito. E só.
+
+(3) É importante o leitor entender que o esqueleto da aplicação é
+criado a partir de linha de comando. "rails new" cria a aplicação,
+"rails generate" cria o BD (model) no esqueleto incluindo e alterando
+arquivos do esqueleto. 
+
+(4) Acho que não precisa tanta explicação sobre Analis.sintáticos. As
+diferenças entre LR, SLR, LALR, LL, são dispensáveisl.
+
+(5) o objetivo do trabalho vem aqui: Propor uma aplicaçõa que recebe
+um schema (termo não definido na explicação de BD), e utilizar o bison
+para traduzí-los para um conjunto de comandos Rails que constrói o
+esqueleto da aplicação.
+
+
+------
+
+Precisa alguns detalhes sobre o rails generate. O leitor tem de
+entender o que ele gera de acordo com os parâmetros.
+
+A aplicação resultante tem algumas peculiaridades. Por exemplo: cada
+tabela de entrada terá uma tela CRUD. E pára aí.
+
+Trabalhos  futuros é importante: como inserir alguma lógica (por
+exemplo para consistência de valores válidos). São sugestões de
+futuros TGs no tema. 
+
+Um exemplo é bom: apresentar um subconjunto da entrada schema e
+mostrar os comandos rails generate assim como imagens da aplicação
+resultante. Aliás, isto será parte integrante da apresentação (para um
+conjunto maior na geração e maior ainda para a demo).
+
+
+
+
