@@ -11,7 +11,7 @@ legadas. ...
 
 
 (2) As questões de integridade parecem dispensáveis. Tem de concentrar
-no conceito. E só.
+no conceito. E só. *FEITO*
 
 (3) É importante o leitor entender que o esqueleto da aplicação é
 criado a partir de linha de comando. "rails new" cria a aplicação,
