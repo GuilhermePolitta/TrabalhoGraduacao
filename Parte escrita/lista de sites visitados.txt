@@ -55,6 +55,10 @@ http://en.wikipedia.org/wiki/Insert_(SQL)
 
 http://en.wikipedia.org/wiki/Data_manipulation_language
 
+http://www.firstsql.com/tutor6.htm
+
+http://en.wikipedia.org/wiki/Database_schema
+
 SGBD
 
 http://en.wikipedia.org/wiki/Database
@@ -74,6 +78,8 @@ http://pt.wikipedia.org/wiki/Ruby_on_Rails
 http://en.wikipedia.org/wiki/Ruby_on_Rails
 
 http://rubyonrails.org/
+
+http://en.wikipedia.org/wiki/Web_application_framework
 
 Paje
 http://paje.c3sl.ufpr.br/

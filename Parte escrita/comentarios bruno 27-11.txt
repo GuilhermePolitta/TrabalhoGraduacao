@@ -7,7 +7,7 @@ linha de comando.
 
 Este trabalho descreve como criar esqueletos de aplicações Ruby on
 Rails a partir de schemas de bancos de dados de apliações
-legadas. ... 
+legadas. ...  *FEITO*
 
 
 (2) As questões de integridade parecem dispensáveis. Tem de concentrar
@@ -16,7 +16,7 @@ no conceito. E só. *FEITO*
 (3) É importante o leitor entender que o esqueleto da aplicação é
 criado a partir de linha de comando. "rails new" cria a aplicação,
 "rails generate" cria o BD (model) no esqueleto incluindo e alterando
-arquivos do esqueleto. 
+arquivos do esqueleto. *FEITO*
 
 (4) Acho que não precisa tanta explicação sobre Analis.sintáticos. As
 diferenças entre LR, SLR, LALR, LL, são dispensáveisl.
