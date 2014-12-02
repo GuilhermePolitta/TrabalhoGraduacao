@@ -81,6 +81,9 @@ http://rubyonrails.org/
 
 http://en.wikipedia.org/wiki/Web_application_framework
 
+https://www.packtpub.com/books/content/working-rails-%E2%80%93-activerecord-migrations-models-scaffolding-and-database-completion
+
 Paje
 http://paje.c3sl.ufpr.br/
 http://paje.c3sl.ufpr.br/Paje/index.html
+

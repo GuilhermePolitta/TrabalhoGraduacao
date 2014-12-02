@@ -14,7 +14,8 @@ char string[TAM_STRING];
 char tipoAtributo[TAM_TOKEN];
 char especificacaoAtributo[TAM_TOKEN];
 
-
+int yylex();
+void yyerror(const char *s);
 %}
 
 %token PROGRAM ABRE_PARENTESES FECHA_PARENTESES 
@@ -91,7 +92,7 @@ tipos		:
 
 prox_regra	: t_alter  |
 			  t_create |
-			  t_comment|
+			  t_comment| {geraCodigo (NULL, "rake db:migrate\n");}
 ;
 
 %%
@@ -122,4 +123,7 @@ main (int argc, char** argv) {
    yyparse();
 
    return 0;
+}
+void yyerror (const char *s) {
+    fprintf (stderr, "%s\n", s);
 }

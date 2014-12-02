@@ -15,5 +15,14 @@ CREATE TABLE customers (
     cel_number INT,
 	order_id INT,
 	amount DOUBLE,
-    FOREIGN KEY (order_id) REFERENCES orders(bla)
+    teste TINYINT(1),
+    t1 TINYINT(1),
+	t2 LONGBLOB2,
+	t3 DATE,
+	t4 DATETIME,
+	t5 DECIMAL,
+	t6 FLOAT,
+	t7 TINYTEXT,
+	t8 TIME,
+    FOREIGN KEY (order_id) REFERENCES orders(customer_id)
 );

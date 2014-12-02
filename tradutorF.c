@@ -119,7 +119,7 @@ void addAtributoNaTabela(atributoTabela *atributoAdd, table *tableAdd) {
 }
 
 char *getTipoCorretoAtributo(atributoTabela *atributoAdd) {
-	if (strcmp(atributoAdd->tipo, "VARCHAR") == 0 ) {
+	/*if (strcmp(atributoAdd->tipo, "VARCHAR") == 0 ) {
 		char *retorno = malloc(TAM_TOKEN *sizeof(char));
 		strcpy(retorno, "string");
 		return retorno;
@@ -133,11 +133,71 @@ char *getTipoCorretoAtributo(atributoTabela *atributoAdd) {
 		return retorno; 
 	} else {
 		return atributoAdd->tipo;
+	}*/
+
+	printf(">>>>o tipo original e %s\n", atributoAdd->tipo);
+	
+	if (isEqual(atributoAdd->tipo,"VARCHAR" ) || strstr(atributoAdd->tipo, "VARCHAR") != NULL) {
+		char *retorno = malloc(TAM_TOKEN *sizeof(char));
+		strcpy(retorno, "string");
+		return retorno;
+	} else if (isEqual(atributoAdd->tipo,"DOUBLE" )) {
+		char *retorno = malloc(TAM_TOKEN *sizeof(char));
+		strcpy(retorno, "decimal{42.6}");
+		return retorno;
+	} else if (isEqual(atributoAdd->tipo,"INT" )) {
+		char *retorno = malloc(TAM_TOKEN *sizeof(char));
+		strcpy(retorno, "integer");
+		return retorno;
+	} else if (isEqual(atributoAdd->tipo,"FLOAT" )) {
+		char *retorno = malloc(TAM_TOKEN *sizeof(char));
+		strcpy(retorno, "float");
+		return retorno;
+	} else if (isEqual(atributoAdd->tipo,"DATETIME" )) {
+		char *retorno = malloc(TAM_TOKEN *sizeof(char));
+		strcpy(retorno, "timestamp");
+		return retorno;
+	} else if (isEqual(atributoAdd->tipo,"TINYINT(1)" )) {
+		char *retorno = malloc(TAM_TOKEN *sizeof(char));
+		strcpy(retorno, "boolean");
+		return retorno;
+	} else if (strstr(atributoAdd->tipo, "BLOB") != NULL) {
+		char *retorno = malloc(TAM_TOKEN *sizeof(char));
+		strcpy(retorno, "binary");
+		return retorno;
+	} else if (isEqual(atributoAdd->tipo,"DECIMAL" )) {
+		char *retorno = malloc(TAM_TOKEN *sizeof(char));
+		strcpy(retorno, "decimal");
+		return retorno;
+	} else if (strstr(atributoAdd->tipo, "TEXT") != NULL) {
+		char *retorno = malloc(TAM_TOKEN *sizeof(char));
+		strcpy(retorno, "text");
+		return retorno;
+	} else  if (isEqual(atributoAdd->tipo,"TIME" )) {
+		char *retorno = malloc(TAM_TOKEN *sizeof(char));
+		strcpy(retorno, "time");
+		return retorno;
+	} else if (isEqual(atributoAdd->tipo,"DATE" )) {
+		char *retorno = malloc(TAM_TOKEN *sizeof(char));
+		strcpy(retorno, "date");
+		return retorno;
 	}
+
+	printf("Tipo de variavel invalido! Abortando\n");
+	exit(1);
+	return NULL;
+}
+
+BOOL isEqual(char *primeiro, char* segundo) {
+	if (strcmp(primeiro, segundo) == 0) {
+		return 1;
+	}
+
+	return 0;
 }
 
 void criaRailsFromTabela(table *tableSql) {
-	geraCodigo (NULL, "rails generate model ");
+	geraCodigo (NULL, "rails generate scaffold ");
 	geraCodigo (NULL, tableSql->nome);
 	geraCodigo (NULL, " ");
 	int i = 0;
