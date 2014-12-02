@@ -1,7 +1,7 @@
 $DEPURA=1
 
 tradutor: lex.yy.c y.tab.c tradutor.o tradutor.h
-	gcc lex.yy.c tradutor.tab.c tradutor.o -o tradutor -ll -ly -lc
+	gcc lex.yy.c tradutor.tab.c tradutor.o -o tradutor -ll -lc
 
 lex.yy.c: tradutor.l tradutor.h
 	flex tradutor.l

@@ -1,3 +1,4 @@
-rails generate model orders customer_id:integer amount:decimal{42.6} --force 
-rails generate model things orders:references amount:decimal{42.6} --force 
-rails generate model customers name:string cel_number:integer orders:references amount:decimal{42.6} --force 
+rails generate scaffold orders customer_id:integer amount:decimal{42.6} --force 
+rails generate scaffold things orders:references amount:decimal{42.6} --force 
+rails generate scaffold customers name:string cel_number:integer orders:references amount:decimal{42.6} teste:boolean t1:boolean t2:binary t3:date t4:timestamp t5:decimal t6:float t7:text t8:time --force 
+rake db:migrate
