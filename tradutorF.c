@@ -203,17 +203,22 @@ void criaRailsFromTabela(table *tableSql) {
 	int i = 0;
 
 	for (i = 0; i< tableSql->tam; i++) {
+		//printf("atribute name: %s\n",tableSql->listaAtributos[i].nome );
 		if (tableSql->listaAtributos[i].primary) {
+			/*if (isEqual(tableSql->listaAtributos[i].tipo,"INT") ){
+				geraCodigo (NULL, tableSql->listaAtributos[i].nome);
+				geraCodigo (NULL, ":primary_key");	
+			} */
 			continue;
 		} else if (tableSql->listaAtributos[i].foreign) {
 			geraCodigo (NULL, tableSql->listaAtributos[i].foreignTable->nome);
 			geraCodigo (NULL, ":references ");
-			//TODO logica de foreign key
+
 		} else {
 			geraCodigo (NULL, tableSql->listaAtributos[i].nome);
 			geraCodigo (NULL, ":");
 			geraCodigo (NULL, getTipoCorretoAtributo(&tableSql->listaAtributos[i]));
-			// TODO logica de limite (aqui ou no setLimite)
+			
 			geraCodigo (NULL, " ");
 		}
 	}
