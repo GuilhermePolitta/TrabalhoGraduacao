@@ -1,0 +1,20 @@
+CREATE TABLE patient (
+    id_patient INT AUTO_INCREMENT PRIMARY KEY,
+    patient_name VARCHAR(255),
+    bed_description VARCHAR(255)
+);
+
+CREATE TABLE book_appointment (
+    id INT AUTO_INCREMENT PRIMARY KEY,,
+    id_patient INT,
+    id_professional INT,
+    entry_protocol_register_hour VARCHAR(255),
+	FOREIGN KEY (id_patient) REFERENCES sp_schedule_patient_rs(id_patient),
+	FOREIGN KEY (id_professional) REFERENCES orders(id_professional)
+);
+
+CREATE TABLE professional (
+	id_professional INT AUTO_INCREMENT PRIMARY KEY,
+    user_name VARCHAR(255),
+    schedule_hour VARCHAR(255)
+);

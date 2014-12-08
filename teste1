@@ -1,3 +1,38 @@
+CREATE TABLE patient (
+
+    id_patient INT AUTO_INCREMENT PRIMARY KEY,
+
+    patient_name VARCHAR(255),
+
+    bed_description VARCHAR(255)
+
+);
+
+CREATE TABLE professional (
+
+	id_professional INT AUTO_INCREMENT PRIMARY KEY,
+
+    user_name VARCHAR(255),
+
+    schedule_hour VARCHAR(255)
+);
+
+
+CREATE TABLE book_appointment (
+
+    id INT AUTO_INCREMENT PRIMARY KEY,
+
+    id_patient INT,
+
+    id_professional INT,
+
+    entry_protocol_register_hour VARCHAR(255),
+
+	FOREIGN KEY (id_patient) REFERENCES patient(id_patient),
+
+	FOREIGN KEY (id_professional) REFERENCES professional(id_professional)
+);
+
 CREATE TABLE orders (
     customer_id INT,
     amount DOUBLE
@@ -26,3 +61,5 @@ CREATE TABLE customers (
 	t8 TIME,
     FOREIGN KEY (order_id) REFERENCES orders(customer_id)
 );
+
+

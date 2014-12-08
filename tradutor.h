@@ -1,4 +1,4 @@
-#define TAM_TOKEN 16
+#define TAM_TOKEN 70
 #define TAM_STRING 256
 
 #define IS_ASPAS_SIMPLES 1
