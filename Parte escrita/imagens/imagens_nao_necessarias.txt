@@ -1,0 +1,3 @@
+Lex_figura1.png
+create_table_exemplo.png
+active_record_sql_comparison.png
