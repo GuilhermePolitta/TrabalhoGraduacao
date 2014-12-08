@@ -1,0 +1,53 @@
+
+(1) Toda vez que usar "qualificadores" (como "principalmente"), é bastante
+provável que seja necessário usar uma referência.
+
+A abordagem ainda não está no ponto. O problema é mais que só
+BD. Sugiro fazer assim:
+
+- Apresentem os problemas de aplicações legadas. Apresentem vantagens
+  para migrar para tecnologias mais recentes. Tem de procurar
+  referências (livros) que respondam estas questões. Eu imagino ser:
+
+  - Problemas: (1) dificuldade de manutenção, (2) de contratação de pessoal
+    qualificado (3) possibilidade da tecnologia sair do mercado 
+  - Porque mudar: soluciona os problemas  vistos.
+  - Como mudar: recriar os aplicativos do zero: lógica, telas, BD,
+    fluxo,etc.
+
+- Só quando chegar neste ponto é que dá para falar de BD. Vocês fazem
+  isso, mas falta a premissa. Porém seria legal falar que dá para
+  criar uma aplicação a partir do squema do bd (sql-based apps) e
+  deixar o "recheio" (lógica, aparência das telas, etc.) para uma
+  segunda fase.
+
+- Qdo falam de RoR, observe que vocês falam direto de RoR e só depois
+  dizem que existem outros. O "correto" é falar que existem
+  ferramentas que fazem isso, depois falar todas, e por fim concentrar
+  no RoR (dizer  que é este que será usado). 
+
+(2) Evitem aposto. Substituam o "Além disto, pode-se fazer outra
+coisa" por "Existem comandos para criar, destruir, ... as
+tabelas. Neste trabalho, utilizaremos os seguintes comandos: "
+
+(3) Parece que foi colocado por colocar. Melhor colocar todas as
+integridades (não sei quantas e quais são) e destacar esta. Coloquem
+referência.
+
+(4) O SQLsquema segue uma gramática bem definida [ref], que é
+reconhecida pelo bison (versão livre do YACC). Como visto na seção
+... , o bison permite gerar comandos a medida que vai fazendo a
+análise sintática. Isto normalmente é utilizado em compiladores para
+fazer análise semântica e geração de código. 
+
+No presente trabalho, o bison foi utilizado para gerar comandos rails
+a medida que faz a análise sintática do SQLsquema. Especificamente,
+ele reconhece os vários tipos de tabelas que podem estar incluídos no
+SQLsquema e gera os comandos que geram os modelos rails na nova
+aplicação, assim como os views e controllers correspondentes.
+
+(5) Tem de explicar não só os relacionamentos, mas a gramática de
+entrada (pode ser em um apêndice). É que não fica claro como um INT
+AUTO_INCREMENT PRIMARY KEy significa no rails. O mapeamento é
+imprescindível.
+
