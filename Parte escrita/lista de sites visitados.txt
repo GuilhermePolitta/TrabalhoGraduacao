@@ -69,6 +69,10 @@ http://www.inf.ufsc.br/~ronaldo/ine5613/2-sgbd.pdf
 
 Rails
 
+http://docs.railsbridge.org/intro-to-rails/CRUD_with_scaffolding
+
+http://guides.rubyonrails.org/command_line.html
+
 http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller
 
 http://pt.wikipedia.org/wiki/Active_record
