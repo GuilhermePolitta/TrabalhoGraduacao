@@ -69,6 +69,8 @@ http://www.inf.ufsc.br/~ronaldo/ine5613/2-sgbd.pdf
 
 Rails
 
+http://guides.rubyonrails.org/active_record_basics.html
+
 http://docs.railsbridge.org/intro-to-rails/CRUD_with_scaffolding
 
 http://guides.rubyonrails.org/command_line.html
