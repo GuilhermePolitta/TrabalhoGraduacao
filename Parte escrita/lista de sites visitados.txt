@@ -69,8 +69,6 @@ http://www.inf.ufsc.br/~ronaldo/ine5613/2-sgbd.pdf
 
 Rails
 
-http://guides.rubyonrails.org/active_record_basics.html
-
 http://docs.railsbridge.org/intro-to-rails/CRUD_with_scaffolding
 
 http://guides.rubyonrails.org/command_line.html
@@ -93,3 +91,11 @@ Paje
 http://paje.c3sl.ufpr.br/
 http://paje.c3sl.ufpr.br/Paje/index.html
 
+
+Introdução
+
+http://arriba.vub.ac.be/docs/Evolution%20of%20legacy%20systems.pdf
+
+https://www.scss.tcd.ie/publications/tech-reports/reports.99/TCD-CS-1999-38.pdf
+
+http://ifs.host.cs.st-andrews.ac.uk/Resources/Notes/Evolution/LegacySys.pdf
