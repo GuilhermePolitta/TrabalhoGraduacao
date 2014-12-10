@@ -1,0 +1,4 @@
+se o rails parar de funcionar do nada usar:
+
+/bin/bash --login
+rvm use 2.1.1
